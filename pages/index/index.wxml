@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container">
+  <view>
+    <van-button>vsd</van-button>
+  </view>
+</view>
