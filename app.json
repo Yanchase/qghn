@@ -1,6 +1,10 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/mall/mall",
+    "pages/cart/cart",
+    "pages/live/live",
+    "pages/mine/mine",
     "pages/logs/logs"
   ],
   "window":{
@@ -10,7 +14,9 @@
     "navigationBarTextStyle":"black"
   },
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
   },
   "sitemapLocation": "sitemap.json"
 }

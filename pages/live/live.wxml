@@ -1,5 +1,6 @@
-<!--index.wxml-->
+<!--pages/live/live.wxml-->
 <view class="container">
+  <text>pages/live/live.wxml</text>
   <van-tabbar active="{{ active }}" bind:change="onChange" custom-class="tabbar" safe-area-inset-bottom="{{ false }}" border="{{false}}">
 	<van-tabbar-item icon="home-o">首页</van-tabbar-item>
 	<van-tabbar-item icon="orders-o">商城</van-tabbar-item>
@@ -9,3 +10,4 @@
 </van-tabbar>
 
 </view>
+
