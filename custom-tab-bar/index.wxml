@@ -4,13 +4,13 @@
       slot="icon"
       src="{{ item.normal }}"
       mode="aspectFit"
-      style="width: 70px; height: 38px;"
+      style="width: 70px; height: 28px;"
     />
     <image
       slot="icon-active"
       src="{{ item.active }}"
       mode="aspectFit"
-      style="width: 70px; height: 38px;"
+      style="width: 70px; height: 28px;"
     /> 
     {{item.text}}
   </van-tabbar-item>
