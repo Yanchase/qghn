@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view>
-<view class="pyg_index">
+<view>
   <view class="image_swiper">
         <swiper autoplay indicator-dots circular interval="2000" style='height:{{Hei}}'>
             <swiper-item class="" item-id="" wx:for="{{swiperList}}" wx:key="banner_id">
@@ -54,5 +54,20 @@
 </view>
 <view>
 <van-cell title="今日推送" icon="fire-o" />
+<view>
+  <swiper autoplay circular interval="2000" previous-margin="54rpx" next-margin='54rpx' bindchange='onChange'>
+    <block wx:for="{{swiperList1}}" wx:key="banner1_id">
+      <swiper-item>
+        <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" data-index="{{index}}" data-item="item" src="{{item}}" >  
+        </image>
+      </swiper-item>
+    </block>
+  </swiper>
 </view>
+</view>
+
+<view>
+  
+</view>
+
 </view>
