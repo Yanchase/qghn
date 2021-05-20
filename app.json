@@ -5,7 +5,8 @@
     "pages/cart/cart",
     "pages/live/live",
     "pages/mine/mine",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/search/search"
   ],
   "window":{
     "backgroundTextStyle":"light",

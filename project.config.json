@@ -30,15 +30,16 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": true,
     "packNpmRelationList": [
-      { 
-        "packageJsonPath": "./package.json", 
-        "miniprogramNpmDistDir": "./" 
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./"
       }
     ],
     "minifyWXSS": true

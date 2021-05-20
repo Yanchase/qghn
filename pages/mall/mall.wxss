@@ -1,1 +1,18 @@
-/* pages/mall/mall.wxss */
+page {
+  height: 100%;
+}
+.mall {
+  height: 100%;
+}
+.mall .mall_container {
+  height: calc(100vh - 90rpx);
+  display: flex;
+}
+.mall .mall_container .left_menu {
+  flex: 2;
+  background-color: green;
+}
+.mall .mall_container .right_content {
+  flex: 5;
+  background-color: red;
+}
