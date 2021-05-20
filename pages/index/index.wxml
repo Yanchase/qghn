@@ -1,4 +1,58 @@
 <!--index.wxml-->
-<view class="container">
-<van-button>vsd</van-button>
+<view>
+<view class="pyg_index">
+  <view class="image_swiper">
+        <swiper autoplay indicator-dots circular interval="2000" style='height:{{Hei}}'>
+            <swiper-item class="" item-id="" wx:for="{{swiperList}}" wx:key="banner_id">
+                    <image src="{{item}}" mode="widthFix" bindload='imgH' style="width: 750rpx; height: 421rpx; display: inline-block; box-sizing: border-box; left: NaNrpx; top: NaNrpx">  
+                    </image>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>
+<view>
+  <van-grid clickable column-num="4">
+  <van-grid-item
+    icon="/image/grid/hn.png"
+    link-type="navigateTo"
+    url=""
+    text="海南特产"
+  />
+  <van-grid-item
+    icon="/image/grid/boxing.png"
+    link-type="reLaunch"
+    url="/pages/dashboard/index"
+    text="文体活动"
+  />
+  <van-grid-item
+    icon="/image/grid/food.png"
+    link-type="reLaunch"
+    url="/pages/dashboard/index"
+    text="本地美食"
+  />
+  <van-grid-item
+    icon="/image/grid/fun.png"
+    link-type="reLaunch"
+    url="/pages/dashboard/index"
+    text="玩乐专区"
+  />
+</van-grid>
+</view>
+
+<view>
+<van-grid column-num="2" border="{{ false }}">
+  <van-grid-item use-slot wx:for="{{picList}}" wx:key="banner_id" link-type="navigateTo" url="/pages/mine/mine">
+    <image
+      style="width: 350rpx; height: 211rpx; display: block; box-sizing: border-box; left: NaNrpx; top: NaNrpx"
+      src="{{item}}"
+    />
+  </van-grid-item>
+</van-grid>
+</view>
+<view>
+
+</view>
+<view>
+<van-cell title="今日推送" icon="fire-o" />
+</view>
 </view>
