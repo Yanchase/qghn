@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 button{
   margin-bottom: 40rpx;
   width:70%;
 }
+=======
+/* pages/login/login.wxss */
+>>>>>>> Stashed changes

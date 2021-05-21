@@ -1,1 +1,6 @@
+<<<<<<< Updated upstream
 <button type="primary" open-type="getUserInfo" bindgetuserinfo="handleGetUserInfo">登录</button>
+=======
+<!--pages/login/login.wxml-->
+<text>pages/login/login.wxml</text>
+>>>>>>> Stashed changes

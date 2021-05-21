@@ -1,9 +1,89 @@
 <!--收货地址-->
-<view class="receive_address">
-
-<view class="address_btn">
+<!-- <view class="receive_address">
+ <view class="address_btn">
 <button bindtap="handleChooseAddress" type="primary" >获取收货地址</button>
+</view>  -->
+
+<view class="product-container">
+	<view class="product-list" style='height:{{height}}px'>
+		<view class="product-item" wx:for="{{slideProductList}}" wx:for-index="index" wx:key='slideProductList'>
+			<slide-delete pid="{{item.id}}" bindaction="handleSlideDelete" wx:key='slideProductList'>
+				<view class="product-item-wrap">
+					<icon type="{{item.select}}" size="19" data-index="{{index}}" data-select="{{item.select}}" bindtap="change" color="red" />
+					<view class="product_img">
+						<image src="{{item.url}}" class='goods-img' mode="widthFix"></image>
+					</view>
+					<view class="product-movable-item">
+						<view class="goods-name">{{item.name}}</view>
+						<view class="goods-type">
+							<text>{{item.style}}</text>
+						</view>
+						<view class="goods-price">￥{{item.price}}</view>
+					</view>
+					<view class="product-movable-item product-movable-item-amount">
+						<view class="num-box">
+							<view class="btn-groups">
+								<button class="goods-btn btn-minus" data-index="{{index}}" data-num="{{item.num}}" bindtap="subtraction">—</button>
+								<input class='num' type='number' data-index="{{index}}" bindblur="numIputBlur" bindinput='inputNum' value='{{item.num}}'></input>
+								<button class="goods-btn btn-add" data-index="{{index}}" data-num="{{item.num}}" bindtap="addtion">+</button>
+							</view>
+						</view>
+					</view>
+				</view>
+			</slide-delete>
+		</view>
+	</view>
+	<view class="cart-fixbar">
+		<view class="allSelect">
+			<icon type="{{allSelect}}" size="19" data-select="{{allSelect}}" bindtap="allSelect" color='#fff' />
+			<view class="allSelect-text">全选</view>
+		</view>
+		<view class="count">
+			<text>合计：</text>￥{{count}}
+		</view>
+		<view class="order">
+			<view class="orders">
+				去结算
+				<text class="allnum">({{num}})</text>
+			</view>
+
+		</view>
+	</view>
 </view>
 
-</view>
+
+
+<!-- <view class="cart-view">
+  <view class="list" wx:if="{{isMultiOrderModel==1}}">
+    <view class="group-item">
+      <view class="goods" wx:for="{{brandCartgoods}}" wx:key="brandId" wx:for-item="bitem">
+        <navigator url="../brandDetail/brandDetail?id={{bitem.brandId}}"  class="h">
+          <view class="l">{{bitem.brandName}} > </view>
+        </navigator>
+        <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{ bitem.cartList}}" wx:key="id">
+          <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-productid="{{item.productId}}"></view>
+            <view class="cart-goods">
+            <image class="img" src="{{item.picUrl}}"></image>
+              <view class="info">
+                <view class="t">
+                <text class="name">{{item.goodsName}}</text>
+                </view>
+                  <view class="b">
+                  <text class="price">￥{{item.price}}</text>
+                  <text class="num"> x{{item.number}}</text>
+                   <!-- <text class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.specifications||''}}</text>  -->
+                    <!-- <view class="selnum">
+                      <view class="cut" bindtap="cutNumber" data-productid="{{item.productId}}">-</view>
+                      <input value="{{item.number}}" class="number" disabled="true" type="number" />
+                      <view class="add" bindtap="addNumber" data-productid="{{item.productId}}">+</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+</view> -->
 
