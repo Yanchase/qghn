@@ -1,66 +1,78 @@
 // pages/live/live.js
 Page({
+  data:{
+    videoUrl:"",
+    orientation: 'vertical',
+    transparent: false,
+    pop: true,
+    height: '440rpx',
+    landscape: false,
+    title: '',
+    nav: true,
+  }, 
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    /*wx.request({
+      method: 'post',
+      url: "",
+      data: {
+	        room_id: roomid,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        if (res.data.status == 1) {
+          that.setData({
+            videoUrl: res.data.url,
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })*/
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  landscape(e) {
+    let that = this
+    let orientation = that.data.orientation == 'vertical' ? 'horizontal' : 'vertical'
+    let height = that.data.height == '440rpx' ? '100%' : '440rpx'
+    let landscape = that.data.landscape ? false : true
+    let pop = that.data.pop ? false : true
+    let isShow = that.data.isShow ? false : true
+    let transparent = that.data.transparent ? true : false
+    let nav = that.data.nav ? false : true
 
+    // 全屏以及退出全屏
+    let player = wx.createLivePlayerContext('player')
+    if (orientation == 'horizontal') {
+      player.requestFullScreen({})
+    } else {
+      player.exitFullScreen({})
+    }
+
+    that.setData({
+      orientation: orientation,
+      height: height,
+      landscape: landscape,
+      pop: pop,
+      isShow: isShow,
+      transparent: transparent,
+      nav: nav,
+      landscape_op: false
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.getTabBar().init();
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 关闭弹窗
+  closePop() {
+    let that = this
+    that.setData({
+      pop: false,
+      landscape: false,
+      transparent: true,
+    })
   }
 })

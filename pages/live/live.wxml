@@ -1,6 +1,15 @@
 <!--pages/live/live.wxml-->
-<view class="container">
-  <text>pages/live/live.wxml</text>
-
-</view>
-
+<live-player id="player" autoplay="true" src="{{videoUrl}}" bindstatechange="statechange" binderror="error" object-fit="fillCrop" orientation="{{orientation}}" />
+<!-- 透明底为了触发弹出层 -->
+      <cover-view class='transparent' wx:if="{{transparent}}" bindtap="showPop" style="height:{{height}}"></cover-view>
+      <!-- 竖屏 -->
+      <cover-view class='pop' wx:if="{{pop}}" style="height:{{height}}">
+        <cover-image class='portrait_screen_img_bg' bindtap="closePop" style="height:{{height}}" src='http://h-cdn.zealcdn.cn/20190605180725.png'></cover-image>
+        <cover-image class='portrait_screen_img' bindtap='landscape'  src='http://h-cdn.zealcdn.cn/20190516173441.png'></cover-image>
+      </cover-view>
+      <!-- 横屏 -->
+      <cover-view class='landscape' wx:if="{{landscape}}">
+        <cover-image class='landscape_bg' bindtap="closePop" style="height:{{height}}" src='http://h-cdn.zealcdn.cn/20190605180725.png'></cover-image>
+        <cover-view class='landscape_text'>{{title}}</cover-view>
+        <cover-image class='landscape_img' bindtap='landscape' src='http://h-cdn.zealcdn.cn/20190516173453.png'></cover-image>
+      </cover-view>

@@ -1,4 +1,4 @@
-<van-tabbar active="{{ active }}" bind:change="onChange" active-color="#fff" inactive-color="gainsboro">
+<van-tabbar active="{{ active }}" bind:change="onChange" active-color="#fff" inactive-color="gainsboro" style="height: 60px">
   <van-tabbar-item wx:for="{{ list }}" wx:key="index" >
     <image
       slot="icon"
