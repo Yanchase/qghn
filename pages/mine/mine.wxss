@@ -1,11 +1,11 @@
 page {
-  background-color: white;
+  background-color: #fafafa;
 }
 .user_info_wrap {
   height: 275rpx;
   overflow: hidden;
   position: relative;
-  background-color: pink;
+  background-color: aqua;
 }
 .user_info_wrap .userinfo {
   display: flex;
@@ -31,20 +31,39 @@ page {
   transform: translateX(-50%);
   top: -50rpx;
 }
-.user_content .user_main .history_wrap {
+.user_content .user_main .mall_order_wrap {
   background-color: #fff;
+}
+.user_content .user_main .mall_order_wrap .mall_order_content {
+  background-color: white;
+}
+.user_content .user_main .mall_order_wrap .mall_order_tip {
+  font-size: small;
+}
+.user_content .user_main .vip {
+  background-color: pink;
+  margin-top: 30rpx;
+}
+.user_content .user_main .my_service {
+  background-color: #fff;
+  margin-top: 30rpx;
+}
+.user_content .user_main .my_service .orders_title {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+.user_content .user_main .my_service .order_content {
   display: flex;
-  border-radius: 10rpx;
 }
-.user_content .user_main .history_wrap navigator {
+.user_content .user_main .my_service .order_content navigator {
+  padding: 15rpx 0;
   flex: 1;
-  text-align: content;
   text-align: center;
-  padding: 10rpx 5rpx;
 }
-.user_content .user_main .history_wrap navigator .his_num {
-  color: red;
+.user_content .user_main .my_service .order_content navigator .iconfont {
+  color: var(--themeColor);
+  font-size: 40rpx;
 }
-.user_content .user_main .history_wrap navigator .his_name {
+.user_content .user_main .my_service .order_content navigator .order_name {
   font-size: small;
 }
