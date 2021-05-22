@@ -1,18 +1,21 @@
-page {
+.mall_container {
   height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
-.mall {
-  height: 100%;
+.stuff_item {
+  display: flex;
+  flex-direction: column;
 }
-.mall .mall_container {
-  height: calc(100vh - 90rpx);
+.stuff_p_s {
+  width: 100%;
   display: flex;
 }
-.mall .mall_container .left_menu {
-  flex: 2;
-  background-color: green;
+.price {
+  margin-left: 0rpx;
 }
-.mall .mall_container .right_content {
-  flex: 5;
-  background-color: red;
+.sale {
+  margin: auto;
+  margin-right: 0rpx;
 }

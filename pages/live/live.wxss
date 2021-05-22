@@ -1,75 +1,27 @@
-/* pages/live/live.wxss */
-.page-section {
-  width: 100%;
-  height: 100%;
-}
-.player_box{
-  width: 100%;
-  position: relative;
-}
-.transparent,.close{
-  width: 100%;
-  background: transparent;
+.bg {
   position: absolute;
-  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
   left: 0;
   right: 0;
-  bottom: 0;
-  z-index: 5;
-}
-.pop {
-  width: 100%;
-  background: transparent;
-  position: absolute;
   top: 0;
-  left: 0;
-  color: #fff;
-  font-size: 28rpx;
+  z-index: 0;
+  filter: blur(8rpx);
 }
-.portrait_screen_img_bg,.landscape_bg{
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 6;
-}
-.portrait_screen_img{
-  position: absolute;
-  right: 30rpx;
-  bottom: 20rpx;
-  width: 50rpx;
-  height: 50rpx;
-  z-index: 8;
-  overflow: visible;
-}
-.landscape{
-  width: 100%;
+.live_container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-.landscape_text{
-  font-size: 28rpx;
-  transform: rotate(90deg);
-  word-wrap: break-word;
-  color: #fff;
-  z-index: 8;
-  line-height: normal;
   width: 100%;
-  height:750rpx;
-  padding-left:130rpx;
-  padding-top:30rpx;
-  box-sizing:border-box;
 }
-.landscape_img{
-  position: absolute;
-  left: 30rpx;
-  bottom: 50rpx;
-  width: 50rpx;
-  height: 50rpx;
-  z-index: 8;
-  transform: rotate(90deg);
+.main_live {
+  z-index: 300;
+  height: 30%;
+  width: 80%;
+  margin-top: 20%;
+  margin-bottom: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 3rpx;
 }

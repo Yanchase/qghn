@@ -1,94 +1,31 @@
-<view class="mall">
-<!--搜索框开始-->
-<SearchInput> </SearchInput>  
-<!--搜索框结束-->
-<!--左侧菜单-->
 <view class="mall_container">
-<scroll-view scroll-y class="left_menu">
-  <view>1</view>
-  <view>2</view>
-  <view>3</view>
-  <view>4</view>
-  <view>5</view>
-  <view>6</view>
-  <view>7</view>
-  <view>8</view>
-  <view>9</view>
-  <view>10</view>
-  <view>11</view>
-  <view>12</view>
-  <view>13</view>
-  <view>14</view>
-  <view>15</view>
-  <view>16</view>
-  <view>17</view>
-  <view>18</view>
-  <view>19</view>
-  <view>20</view>
-  <view>21</view>
-  <view>22</view>
-  <view>23</view>
-  <view>24</view>
-  <view>25</view>
-  <view>26</view>
-  <view>27</view>
-  <view>28</view>
-  <view>29</view>
-  <view>30</view>
-  <view>31</view>
-  <view>32</view>
-  <view>33</view>
-  <view>34</view>
-  <view>35</view>
-  <view>36</view>
-  <view>37</view>
-  <view>38</view>
-  <view>39</view>
-  <view>40</view>
-</scroll-view>
-<!--右侧菜单-->
-<scroll-view scroll-y class="right_content">
-  <view>1</view>
-  <view>2</view>
-  <view>3</view>
-  <view>4</view>
-  <view>5</view>
-  <view>6</view>
-  <view>7</view>
-  <view>8</view>
-  <view>9</view>
-  <view>10</view>
-  <view>11</view>
-  <view>12</view>
-  <view>13</view>
-  <view>14</view>
-  <view>15</view>
-  <view>16</view>
-  <view>17</view>
-  <view>18</view>
-  <view>19</view>
-  <view>20</view>
-  <view>21</view>
-  <view>22</view>
-  <view>23</view>
-  <view>24</view>
-  <view>25</view>
-  <view>26</view>
-  <view>27</view>
-  <view>28</view>
-  <view>29</view>
-  <view>30</view>
-  <view>31</view>
-  <view>32</view>
-  <view>33</view>
-  <view>34</view>
-  <view>35</view>
-  <view>36</view>
-  <view>37</view>
-  <view>38</view>
-  <view>39</view>
-  <view>40</view>
-</scroll-view>
-</view>
+<!--搜索框开始-->
+  <view class="bar_and_types">
+    <view class="search_bar" bindtap="onClick">
+      <van-search v-model="{{input_value}}" disabled placeholder="请输入搜索关键词"></van-search>
+    </view>
+    <view class="stuff_types">
+      <van-tabs sticky bind:change="onChange">
+        <van-tab wx:for="{{stuff_types}}" wx:key="key" title="{{item.type}}"></van-tab>
+      </van-tabs>
+    </view>
+  </view>
+<!--搜索框结束-->
+<!--物品浏览-->
+  <view class="stuff_container">
+    <van-grid wx:if="{{!isEmpty}}" column-num="2"  clickable="true">
+      <van-grid-item use-slot wx:for="{{stuffs}}" wx:key="key" link-type="navigateTo" url="{{item.url}}">
+        <view class="stuff_item">
+          <image src="{{item.img}}" mode="widthFix" style="width: 100%"></image>
+          <text style="word-break: break-all; display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; margin-bottom: 20rpx;">{{item.tag}}</text>
+          <view class="stuff_p_s">
+            <text class="price">￥{{item.price}}</text>
+            <text class="sale">{{item.sale}}件已售</text>
+          </view>
+        </view>
+      </van-grid-item>
+    </van-grid>
+    <view style="display:flex; align-items:center; justify-content:center;" wx:else><text style="margin-top: 60rpx; font-size: 50rpx; color: gray;">暂无商品信息</text></view>
+  </view>
 </view>
 
