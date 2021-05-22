@@ -1,66 +1,20 @@
 // pages/search/search.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    //搜索框的值控制变量
+    value:""
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  //点击搜索或确认之后执行
+  onSearch: function (e) {
+    console.log("访问后端")
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //点击取消按钮执行
+  onCancel: function (e) {
+    console.log("取消")
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //动态更新控制值value
+  changeInputValue: function (e) {
+    this.data.value = e.detail;
   }
 })
