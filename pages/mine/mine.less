@@ -1,8 +1,8 @@
 page{
-  background-color: grey;
+  background-color:white;
 }
   .user_info_wrap {
-    height: 25vh;
+    height: 275rpx;
     overflow: hidden;
     position: relative;
     background-color: #fab300;
@@ -25,6 +25,7 @@ page{
   .user_content{
     position:relative;
     .user_main{
+      padding-bottom: 100rpx;
       position:absolute;
       width:90%;
       left:50%;
@@ -47,7 +48,26 @@ page{
             font-size: small;
           }
         }
+      }
+      .orders_wrap{
+        background-color: #fff;
+        margin-top: 30rpx;
+        .orders_title{
+          padding: 20rpx;
+          border-bottom: 1rpx solid #ccc;
+        }
+        .order_content{
+          display: flex;
+          navigator{
+            padding: 15rpx 0;
+            flex: 1;
+            text-align: center;
 
+            .order_name{
+              font-size: small;
+            }
+          }
+        }
       }
     }
   }

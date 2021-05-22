@@ -33,3 +33,20 @@
   </view>
 </view>
 </view>
+<!--我的服务-->
+  <view class="orders_wrap">
+    <view class="orders_title">我的服务</view>
+      <view class="order_content">
+        <navigator url="">
+          <view class="order_name">商品兑换</view>
+        </navigator>
+        <navigator url="">
+          
+          <view class="order_name">联系客服</view>
+        </navigator>
+        <navigator url="">
+          
+          <view class="order_name">领券中心</view>
+        </navigator>
+    </view>
+  </view>
