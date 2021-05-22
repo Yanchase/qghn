@@ -11,42 +11,70 @@
 </view>
 
 <view class="user_content">
-<view class="user_main">
-<!--历史足迹-->
-  <view class="history_wrap">
-    <navigator>
-      <view class="his_num">0</view>
-      <view class="his_name">商城订单</view>
+  <view class="user_main"> 
+
+  <!--商城订单-->
+    <view class="mall_order_wrap">
+      <view class="mall_order_content">
+      <van-grid clickable column-num="4">
+      <van-grid-item
+      icon="/image/grid/dingdan.png"
+      link-type="navigateTo"
+      url=""
+      text="订单"
+      />
+      <van-grid-item
+      icon="/image/grid/hongbao.png"
+      link-type="reLaunch"
+      url=""
+      text="红包"
+      />
+      <van-grid-item
+      icon="/image/grid/youhuiquan.png"
+      link-type="reLaunch"
+      url=""
+      text="优惠券"
+      />
+      <van-grid-item
+      icon="/image/grid/quanbudingdan.png"
+      link-type="reLaunch"
+      url=""
+      text="全部订单"
+      />
+      </van-grid>
+      </view>
+    </view> 
+
+  <!--会员专区-->
+    <view class="vip">
+    <navigator url="">
+    <van-cell title="会员专区" icon="gem-o"/>
     </navigator>
-    <navigator>
-      <view class="his_num">0</view>
-      <view class="his_name">优惠券</view>
-    </navigator>
-    <navigator>
-      <view class="his_num">0</view>
-      <view class="his_name">红包</view>
-    </navigator>
-    <navigator>
-      <view class="his_num">0</view>
-      <view class="his_name">全部订单</view>
-    </navigator>
-  </view>
-</view>
-</view>
-<!--我的服务-->
-  <view class="orders_wrap">
-    <view class="orders_title">我的服务</view>
+    </view>
+
+  <!--我的服务-->
+    <view class="my_service">
+      <view class="orders_title">我的服务</view>
       <view class="order_content">
         <navigator url="">
+          <view class="iconfont icon-jiaruwomen"></view>
+          <view class="order_name">加入分销人</view>
+        </navigator>
+        <navigator url="">
+          <view class="iconfont icon-duihuan"></view>
           <view class="order_name">商品兑换</view>
         </navigator>
         <navigator url="">
-          
+          <view class="iconfont icon-tubiao-"></view>
           <view class="order_name">联系客服</view>
         </navigator>
         <navigator url="">
-          
+          <view class="iconfont icon-zu14"></view>
           <view class="order_name">领券中心</view>
         </navigator>
+      </view>
     </view>
+
   </view>
+</view>
+
