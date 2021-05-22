@@ -8,8 +8,7 @@
     "pages/login/login",
     "pages/goods/goods",
     "pages/logs/logs",
-    "pages/search/search",
-    "pages/login/login"
+    "pages/search/search"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -1,42 +1,53 @@
+page{
+  background-color: grey;
+}
   .user_info_wrap {
-    height: 45vh;
+    height: 25vh;
     overflow: hidden;
     position: relative;
-    .user_img_wrap {
-      position: relative;
-      .user_bg {
-        height: 50vh;
-        width: 100vw;
-        // 高斯模糊
-        filter: blur(5rpx);
-      }
-      .user_info {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 20%;
-        text-align: center;
-        .user_icon{
-          width: 150rpx;
-          height: 150rpx;
+    background-color: #fab300;
+      .userinfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        
+        .userinfo-avatar{
+          overflow: hidden;
+          width: 128rpx;
+          height: 128rpx;
+          margin: 20rpx;
           border-radius: 50%;
-        }
-        .user_name{
-          color: #fff;
-          margin-top: 40rpx;
-          // font-size: 40rpx;
-        }
       }
     }
-    .user_btn{
-      position: absolute;
-      left: 50%;
+  }
+
+  .user_content{
+    position:relative;
+    .user_main{
+      position:absolute;
+      width:90%;
+      left:50%;
       transform: translateX(-50%);
-      top: 40%;
-      border: 1rpx solid greenyellow;
-      color: greenyellow;
-      font-size: 38rpx;
-      padding: 30rpx;
-      border-radius: 10rpx;
+      top:-50rpx;
+
+      .history_wrap{
+        background-color:#fff;
+        display: flex;
+        border-radius: 10rpx;
+        navigator{
+          flex:1;
+          text-align:content;
+          text-align: center;
+          padding: 10rpx 5rpx;
+          .his_num{
+            color:red;
+          }
+          .his_name{
+            font-size: small;
+          }
+        }
+
+      }
     }
   }

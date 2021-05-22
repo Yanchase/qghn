@@ -1,40 +1,49 @@
+page {
+  background-color: grey;
+}
 .user_info_wrap {
-  height: 45vh;
+  height: 25vh;
   overflow: hidden;
   position: relative;
+  background-color: #fab300;
 }
-.user_info_wrap .user_img_wrap {
-  position: relative;
+.user_info_wrap .userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
 }
-.user_info_wrap .user_img_wrap .user_bg {
-  height: 50vh;
-  width: 100vw;
-  filter: blur(5rpx);
-}
-.user_info_wrap .user_img_wrap .user_info {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 20%;
-  text-align: center;
-}
-.user_info_wrap .user_img_wrap .user_info .user_icon {
-  width: 150rpx;
-  height: 150rpx;
+.user_info_wrap .userinfo .userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
   border-radius: 50%;
 }
-.user_info_wrap .user_img_wrap .user_info .user_name {
-  color: #fff;
-  margin-top: 40rpx;
+.user_content {
+  position: relative;
 }
-.user_info_wrap .user_btn {
+.user_content .user_main {
   position: absolute;
+  width: 90%;
   left: 50%;
   transform: translateX(-50%);
-  top: 40%;
-  border: 1rpx solid greenyellow;
-  color: greenyellow;
-  font-size: 38rpx;
-  padding: 30rpx;
+  top: -50rpx;
+}
+.user_content .user_main .history_wrap {
+  background-color: #fff;
+  display: flex;
   border-radius: 10rpx;
+}
+.user_content .user_main .history_wrap navigator {
+  flex: 1;
+  text-align: content;
+  text-align: center;
+  padding: 10rpx 5rpx;
+}
+.user_content .user_main .history_wrap navigator .his_num {
+  color: red;
+}
+.user_content .user_main .history_wrap navigator .his_name {
+  font-size: small;
 }
