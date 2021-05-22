@@ -1,0 +1,38 @@
+/* pages/paythebill/paythebill.wxss */
+
+.cart-fixbar {
+  position:fixed;
+  bottom:113rpx;
+  background:#e60a30;
+  height:106rpx;
+  width:95%;
+  margin:0 20rpx;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  border-top-left-radius:20rpx;border-top-right-radius:20rpx;
+}
+.cart-fixbar .count {
+  color:#fff;
+  font-size:36rpx;
+  position:absolute;
+  right:220rpx;
+  display:flex;
+  align-items:center;
+}
+.cart-fixbar .count text {
+  font-size:28rpx;
+}
+.cart-fixbar .order {
+  color:#e02e24;
+  height:58rpx;
+  background:#fff;
+  line-height:58rpx;
+  position:absolute;
+  right:0;margin:0 20rpx;
+  font-size:28rpx;
+  border-radius:10rpx;
+}
+.cart-fixbar .orders {
+  padding:0 18rpx;
+}

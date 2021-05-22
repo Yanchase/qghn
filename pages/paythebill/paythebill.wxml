@@ -1,0 +1,17 @@
+<!--pages/paythebill/paythebill.wxml-->
+
+
+<view class="cart-fixbar" style="position: fixed; left: -4rpx; top: 1091rpx">
+		<view class="count">
+			<text>合计：</text>￥{{count}}
+		</view>
+		<view class="order">
+			<view class="orders">
+				支付订单
+			</view>
+		</view>
+	</view>
+
+
+
+

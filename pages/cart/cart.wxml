@@ -42,7 +42,7 @@
 			<text>合计：</text>￥{{count}}
 		</view>
 		<view class="order">
-			<view class="orders">
+			<view class="orders" bindtap="checkthebill">
 				去结算
 				<text class="allnum">({{num}})</text>
 			</view>
