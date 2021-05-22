@@ -2,7 +2,7 @@ page {
   background-color: #fafafa;
 }
 .user_info_wrap {
-  height: 275rpx;
+  height: 30vh;
   overflow: hidden;
   position: relative;
   background-color: aqua;
@@ -15,9 +15,9 @@ page {
 }
 .user_info_wrap .userinfo .userinfo-avatar {
   overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+  width: 15vh;
+  height: 15vh;
+  margin-top: 5vh;
   border-radius: 50%;
 }
 .user_content {
@@ -29,7 +29,7 @@ page {
   width: 90%;
   left: 50%;
   transform: translateX(-50%);
-  top: -50rpx;
+  top: -5vh;
 }
 .user_content .user_main .mall_order_wrap {
   background-color: #fff;
