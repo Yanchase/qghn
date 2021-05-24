@@ -5,13 +5,15 @@ page {
   height: 30vh;
   overflow: hidden;
   position: relative;
-  background-color: aqua;
+  background-image: url(https://ftp.bmp.ovh/imgs/2021/05/dcde0cf31842ddf1.jpg);
+  background-size: 100% 100%;
 }
 .user_info_wrap .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: black;
+  font-weight: bold;
 }
 .user_info_wrap .userinfo .userinfo-avatar {
   overflow: hidden;
@@ -22,6 +24,11 @@ page {
 }
 .user_content {
   position: relative;
+}
+.user_content .orders_title {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #ccc;
+  font-size: small;
 }
 .user_content .user_main {
   padding-bottom: 100rpx;
@@ -50,7 +57,7 @@ page {
 }
 .user_content .user_main .my_service .orders_title {
   padding: 20rpx;
-  border-bottom: 1rpx solid #ccc;
+  font-size: small;
 }
 .user_content .user_main .my_service .order_content {
   display: flex;
