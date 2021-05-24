@@ -1,12 +1,18 @@
 page {
   background-color: #fafafa;
 }
-.user_info_wrap {
+.user_info_wrap { 
   height: 30vh;
   overflow: hidden;
   position: relative;
-  background-image: url(https://ftp.bmp.ovh/imgs/2021/05/dcde0cf31842ddf1.jpg);
-  background-size: 100% 100%;
+}
+.user_info_wrap .mine-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 .user_info_wrap .userinfo {
   display: flex;
