@@ -6,8 +6,11 @@
     "pages/live/live",
     "pages/mine/mine",
     "pages/goods/goods",
+    "pages/gooddetail/gooddetail",
     "pages/logs/logs",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/paythebill/paythebill",
+    "pages/order/order"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -18,7 +21,8 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-tabbar": "@vant/weapp/tabbar/index",
-    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "custom-tab-bar":"/custom-tab-bar/index"
   },
   "tabBar": {
     "custom": true,

@@ -1,295 +1,304 @@
-// pages/cart/cart.js
-const app = getApp()
+var util = require('../../utils/util.js');
+var api = require('../../config/api.js');
+//var user = require('../../utils/user.js');
+
+var app = getApp();
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    goodsNum:'',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
-    slideProductList: [
-      {
-        id:1,
-        name: '轻奢纯棉刺绣水洗四件套',
-        url: "/image/cart/cart1.jpg",
-        style: "1.5m床垫*1+枕头*2,浅杏粉",
-        price: "999",
-        select: "circle",
-        num: "1",
-        code: "0001",
-        amount: 500
-      },
-      {
-        id: 2,
-        name: "轻奢纯棉刺绣水洗四件套",
-        url: "/image/cart/cart2.jpg",
-        style: "1.8m床垫*1+枕头*2,烟白灰",
-        price: "1099",
-        select: "circle",
-        code: "0002",
-        num: "1",
-        amount: 500
-      },
-    ],
-    allSelect: "circle",
-    num: 0,
-    count: 0,
-    lastX: 0,
-    lastY: 0,
-    text: "没有滑动",
-
-   
+    cartGoods: [],
+    cartTotal: {
+      "goodsCount": 0,
+      "goodsAmount": 0.00,
+      "checkedGoodsCount": 0,
+      "checkedGoodsAmount": 0.00
+    },
+    isEditCart: false,
+    checkedAllStatus: true,
+    editCartList: [],
+    hasLogin: true
   },
-
-  change: function (e) {
-    var that = this
-    var index = e.currentTarget.dataset.index
-    var select = e.currentTarget.dataset.select
-
-    if (select == "circle") {
-      var stype = "success"
-    } else {
-      var stype = "circle"
+  onLoad: function(options) {
+    // 页面初始化 options为页面跳转所带来的参数
+  },
+  onReady: function() {
+    // 页面渲染完成
+  },
+  onPullDownRefresh() {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.getCartList();
+    wx.hideNavigationBarLoading() //完成停止加载
+    wx.stopPullDownRefresh() //停止下拉刷新
+  },
+  onShow: function() {
+    // 页面显示
+    if (app.globalData.hasLogin) {
+      this.getCartList();
     }
-    var newList = that.data.slideProductList
-    newList[index].select = stype
-    that.setData({
-      slideProductList: newList
-    })
-    that.countNum()
-    that.count()
-  },
-  addtion: function (e) {
-    var that = this
-    var index = e.currentTarget.dataset.index
-    var num = e.currentTarget.dataset.num
-    //默认99件
-    if (num < 99) {
-      num++
-    }
-    var newList = that.data.slideProductList
-    newList[index].num = num
-    that.setData({
-      goodsNum:num,
-      slideProductList: newList
-    })
-    that.countNum()
-    that.count()
-  },
-  inputNum:function(e){
-    var num = e.detail.value;
+
     this.setData({
-      goodsNum:num
-    })
-  },
-  numIputBlur:function(e){
-    var that = this
-    var num = that.data.goodsNum
-    var index = e.currentTarget.dataset.index
-    var newList = that.data.slideProductList
-    if (num == "") { //盘空
-      newList[index].num = 1;
-      that.setData({
-        slideProductList: newList
-      })
-    }else if (num < 1) {
-      that.setData({
-        goodsNum: newList[index].num,
-        slideProductList: newList
-      })
-      wx.showToast({
-        title: '亲，该宝贝不能减少了哦~',
-        icon: 'none'
-      })
-    }else if(num>99){
-      
-      that.setData({
-        goodsNum: newList[index].num,
-        slideProductList: newList
-      })
-      wx.showToast({
-        title: '亲，该宝贝最多购买99件哦~',
-        icon: 'none'
-      })
-    }else{
-      newList[index].num = num;
-      that.setData({
-        slideProductList: newList
-      })
-    }
-    that.countNum()
-    that.count()
-  },
-  //减法
-  subtraction: function (e) {
-    var that = this
-    var index = e.currentTarget.dataset.index
-    var num = e.currentTarget.dataset.num
-    var newList = that.data.slideProductList
-    
-    if (num == 1) {//当数量为1件时，再次点击移除该商品
-      newList.splice(index, 1)
-    } else {
-      num--
-      newList[index].num = num
-    }
-    that.setData({
-      goodsNum: num,
-      slideProductList: newList
-    })
-    that.countNum()
-    that.count()
-  },
-  //全选
-  allSelect: function (e) {
-    var that = this
-    var allSelect = e.currentTarget.dataset.select //先判断是否选中
-    var newList = that.data.slideProductList
-    console.log(newList)
-    if (allSelect == "circle") {
-      for (var i = 0; i < newList.length; i++) {
-        newList[i].select = "success"
-      }
-      var select = "success"
-    } else {
-      for (var i = 0; i < newList.length; i++) {
-        newList[i].select = "circle"
-      }
-      var select = "circle"
-    }
-    that.setData({
-      slideProductList: newList,
-      allSelect: select
-    })
-    that.countNum()
-    that.count()
-  },
- 
-  countNum: function () { //计算数量
-    var that = this
-    var newList = that.data.slideProductList
-    var allNum = 0
-    for (var i = 0; i < newList.length; i++) {
-      if (newList[i].select == "success") {
-        allNum += parseInt(newList[i].num)
-      }
-    }
-    parseInt
-    that.setData({
-      num: allNum
-    })
-  },
-  
-  count: function () {//计算金额方法
-    var that = this
-    var newList = that.data.slideProductList
-    var newCount = 0
-    for (var i = 0; i < newList.length; i++) {
-      if (newList[i].select == "success") {
-        newCount += newList[i].num * newList[i].price
-      }
-    }
-    that.setData({
-      count: newCount
-    })
-  },
+      hasLogin: app.globalData.hasLogin
+    });
 
-  
+  },
+  onHide: function() {
+    // 页面隐藏
+  },
+  onUnload: function() {
+    // 页面关闭
+  },
+  goLogin() {
+    wx.navigateTo({
+      url: "/pages/login/login"
+    });
+  },
+  getCartList: function() {
+    let that = this;
+    util.request(api.GetCart).then(function(res) {
+      if (res.errno === 0) {
+        that.setData({
+          cartGoods: res.data.cartList,
+          cartTotal: res.data.cartTotal
+        });
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var width=wx.getSystemInfoSync().windowWidth
-    var height=wx.getSystemInfoSync().windowHeight
-    height=height-55-53;
+        that.setData({
+          checkedAllStatus: that.isCheckedAll()
+        });
+      }
+    });
+  },
+  isCheckedAll: function() {
+    //判断购物车商品已全选
+    return this.data.cartGoods.every(function(element, index, array) {
+      if (element.checked == true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  },
+  doCheckedAll: function() {
+    let checkedAll = this.isCheckedAll()
     this.setData({
-      height:height
-    })
+      checkedAllStatus: this.isCheckedAll()
+    });
   },
+  //!!
+  checkedItem: function(event) {
+    let itemIndex = event.target.dataset.itemIndex;
+    let that = this;
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    let productId = [];
+    productId.push(that.data.cartGoods[itemIndex].productId);
+    if (!this.data.isEditCart) {
+      util.request(api.CartChecked, {
+        productId: productId,
+        isChecked: that.data.cartGoods[itemIndex].checked ? 0 : 1
+      }, 'POST').then(function(res) {
+        if (res.errno === 0) {
+          that.setData({
+            cartGoods: res.data.cartList,
+            cartTotal: res.data.cartTotal
+          });
+        }
+
+        that.setData({
+          checkedAllStatus: that.isCheckedAll()
+        });
+      });
+    } else {
+      //编辑状态
+      let tmpCartData = this.data.cartGoods.map(function(element, index, array) {
+        if (index == itemIndex) {
+          element.checked = !element.checked;
+        }
+
+        return element;
+      });
+
+      that.setData({
+        cartGoods: tmpCartData,
+        checkedAllStatus: that.isCheckedAll(),
+        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+      });
+    }
+  },
+  getCheckedGoodsCount: function() {
+    let checkedGoodsCount = 0;
+    this.data.cartGoods.forEach(function(v) {
+      if (v.checked === true) {
+        checkedGoodsCount += v.number;
+      }
+    });
+    console.log(checkedGoodsCount);
+    return checkedGoodsCount;
+  },
+  checkedAll: function() {
+    let that = this;
+
+    if (!this.data.isEditCart) {
+      var productId = this.data.cartGoods.map(function(v) {
+        return v.productId;
+      });
+      util.request(api.CartChecked, {
+        productId: productId,
+        isChecked: that.isCheckedAll() ? 0 : 1
+      }, 'POST').then(function(res) {
+        if (res.errno === 0) {
+          console.log(res.data);
+          that.setData({
+            cartGoods: res.data.cartList,
+            cartTotal: res.data.cartTotal
+          });
+        }
+
+        that.setData({
+          checkedAllStatus: that.isCheckedAll()
+        });
+      });
+    } else {
+      //编辑状态
+      let checkedAllStatus = that.isCheckedAll();
+      let tmpCartData = this.data.cartGoods.map(function(v) {
+        v.checked = !checkedAllStatus;
+        return v;
+      });
+
+      that.setData({
+        cartGoods: tmpCartData,
+        checkedAllStatus: that.isCheckedAll(),
+        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+      });
+    }
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+  editCart: function() {
+    var that = this;
+    if (this.data.isEditCart) {
+      this.getCartList();
+      this.setData({
+        isEditCart: !this.data.isEditCart
+      });
+    } else {
+      //编辑状态
+      let tmpCartList = this.data.cartGoods.map(function(v) {
+        v.checked = false;
+        return v;
+      });
+      this.setData({
+        editCartList: this.data.cartGoods,
+        cartGoods: tmpCartList,
+        isEditCart: !this.data.isEditCart,
+        checkedAllStatus: that.isCheckedAll(),
+        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+      });
+    }
 
   },
+  updateCart: function(productId, goodsId, number, id) {
+    let that = this;
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+    util.request(api.UpdateCart, {
+      productId: productId,
+      goodsId: goodsId,
+      number: number,
+      id: id
+    }, 'POST').then(function(res) {
+      that.setData({
+        checkedAllStatus: that.isCheckedAll()
+      });
+    });
 
   },
+  cutNumber: function(event) {
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    let itemIndex = event.target.dataset.itemIndex;
+    let cartItem = this.data.cartGoods[itemIndex];
+    let number = (cartItem.number - 1 > 1) ? cartItem.number - 1 : 1;
+    cartItem.number = number;
+    this.setData({
+      cartGoods: this.data.cartGoods
+    });
+    this.updateCart(cartItem.productId, cartItem.goodsId, number, cartItem.id);
+  },
+  addNumber: function(event) {
+    let itemIndex = event.target.dataset.itemIndex;
+    let cartItem = this.data.cartGoods[itemIndex];
+    let number = cartItem.number + 1;
+    cartItem.number = number;
+    this.setData({
+      cartGoods: this.data.cartGoods
+    });
+    this.updateCart(cartItem.productId, cartItem.goodsId, number, cartItem.id);
 
+  },
+  checkoutOrder: function() {
+    //获取已选择的商品
+    let that = this;
+
+    var checkedGoods = this.data.cartGoods.filter(function(element, index, array) {
+      if (element.checked == true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    if (checkedGoods.length <= 0) {
+      return false;
+    }
+
+    // storage中设置了cartId，则是购物车购买
+    try {
+      wx.setStorageSync('cartId', 0);
+      wx.navigateTo({
+        url: '/pages/pillthebill/paythebill'
+      })
+    } catch (e) {}
+
+  },
+  deleteCart: function() {
+    //获取已选择的商品
+    let that = this;
+
+    let productId = this.data.cartGoods.filter(function(element, index, array) {
+      if (element.checked == true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    if (productId.length <= 0) {
+      return false;
+    }
+
+    productId = productId.map(function(element, index, array) {
+      if (element.checked == true) {
+        return element.productId;
+      }
+    });
+
+
+    util.request(api.DeleteCart, {
+      productId: productId
+    }, 'POST').then(function(res) {
+      if (res.errno === 0) {
+        console.log(res.data);
+        let cartList = res.data.cartList.map(v => {
+          v.checked = false;
+          return v;
+        });
+
+        that.setData({
+          cartGoods: cartList,
+          cartTotal: res.data.cartTotal
+        });
+      }
+
+      that.setData({
+        checkedAllStatus: that.isCheckedAll()
+      });
+    });
   }
 })
-
-// Page({
-//   data:{
-//     isMultiOrderModel:0,
-//     cartGoods: [],
-//     brandCartgoods:[],
-//     cartTotal: {
-//       "goodsCount": 0,
-//       "goodsAmount": 0.00,
-//       "checkedGoodsCount": 0,
-//       "checkedGoodsAmount": 0.00
-//     },
-//     isEditCart: false,
-//     checkedAllStatus: true,
-//     editCartList: [],
-//   },
-
-//   onChange(event) {
-//     this.setData({
-//       result: event.detail,
-//     });
-//   },
-//   //点击获取收获地址
-//   handleChooseAddress(){
-//     wx.chooseAddress({
-//       success: (result) => {
-//         console.log(result);
-//       }
-//     });
-      
-//   }
-// })

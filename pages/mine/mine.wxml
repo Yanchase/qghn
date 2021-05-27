@@ -22,7 +22,7 @@
       <van-grid-item
       icon="/image/grid/dingdan.png"
       link-type="navigateTo"
-      url=""
+      url="/pages/order/order"
       text="订单"
       />
       <van-grid-item

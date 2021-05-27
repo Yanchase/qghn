@@ -32,6 +32,7 @@ Component({
         normal:'/image/tabber/mine.png',
         active:'/image/tabber/mine-active.png'
       }
+
     ]
   },
   methods: {

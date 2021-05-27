@@ -15,25 +15,25 @@
   <van-grid-item
     icon="/image/grid/hn.png"
     link-type="navigateTo"
-    url=""
+    url="/pages/mall/mall"
     text="海南特产"
   />
   <van-grid-item
     icon="/image/grid/boxing.png"
     link-type="reLaunch"
-    url="/pages/dashboard/index"
+    url="/pages/mall/mall"
     text="文体活动"
   />
   <van-grid-item
     icon="/image/grid/food.png"
     link-type="reLaunch"
-    url="/pages/dashboard/index"
+    url="/pages/mall/mall"
     text="本地美食"
   />
   <van-grid-item
     icon="/image/grid/fun.png"
     link-type="reLaunch"
-    url="/pages/dashboard/index"
+    url="/pages/mall/mall"
     text="玩乐专区"
   />
 </van-grid>

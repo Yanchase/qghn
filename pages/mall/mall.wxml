@@ -4,13 +4,13 @@
     <view class="search_bar" bindtap="onClick">
       <van-search v-model="{{input_value}}" disabled placeholder="请输入搜索关键词"></van-search>
     </view>
+    <!--搜索框结束-->
     <view class="stuff_types">
       <van-tabs sticky bind:change="onChange">
         <van-tab wx:for="{{stuff_types}}" wx:key="key" title="{{item.type}}"></van-tab>
       </van-tabs>
     </view>
   </view>
-<!--搜索框结束-->
 <!--物品浏览-->
   <view class="stuff_container">
     <van-grid wx:if="{{!isEmpty}}" column-num="2"  clickable="true">
