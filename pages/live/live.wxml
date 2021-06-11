@@ -3,7 +3,11 @@
 <view class="live_container">
   <view class="main_live">
     <image src="/image/live/live2.jpg"></image>
-    <button>模块尚未开通</button>
+    <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId}}&custom_params={{customParams}}">
+      <button>模块尚未开通</button>
+    </navigator>
   </view>
-  <view class="record_vedios"></view>
+  <view class="record_vedios">
+    <video src="http://sihon-temp.oss-cn-shanghai.aliyuncs.com/2021-06-11/6489e226-ed48-43d5-9beb-d3f248eeb0c9.mp4"></video>
+  </view>
 </view>

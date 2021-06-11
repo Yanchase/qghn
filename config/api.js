@@ -9,7 +9,7 @@
   GoodPrice: WxApiRoot + 'qghn/goods-product/get_price', //单个商品计价
   GoodAttri: WxApiRoot + 'qghn/goods-attribute/get_attri', //商品参数
   GoodInfo: WxApiRoot +'qghn/goods-basic-info/get_goods_info',  //商品主页
-  GoodList: WxApiRoot +'qghn/goods-basic-info/getlist', //获取所有商品列表
+  GoodList: WxApiRoot +'qghn/goods-basic-info/getList', //获取所有商品列表
   GetRootCate: WxApiRoot + 'qghn/goods-category/get_root_cate',  //获取根目录
   GetChildCate: WxApiRoot + 'qghn/goods-category/get_child_cate', //获取子目录
   GetCart: WxApiRoot + 'qghn/cart/getCar',    //购物车

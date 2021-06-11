@@ -5,3 +5,18 @@
   display: flex;
   flex-direction: column;
 }
+.stuff_item {
+  display: flex;
+  flex-direction: column;
+}
+.stuff_p_s {
+  width: 100%;
+  display: flex;
+}
+.price {
+  margin-left: 0rpx;
+}
+.sale {
+  margin: auto;
+  margin-right: 0rpx;
+}

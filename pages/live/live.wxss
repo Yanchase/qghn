@@ -25,3 +25,8 @@
   margin-right: 10%;
   border: 3rpx;
 }
+.record_vedios {
+  display: flex;
+  flex-direction: column;
+  
+}
