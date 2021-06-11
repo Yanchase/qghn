@@ -2,7 +2,7 @@
       <view class="c">
         <text>空空如也~</text>
         <text>去添加点什么吧</text>
-      </view>
+</view>
 </view>
     <view class="cart-view" wx:else>
       <view class="list">

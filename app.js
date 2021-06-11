@@ -1,4 +1,5 @@
-
+var util = require('./utils/util.js');
+var api = require('./config/api.js');
 // app.js
 App({
   onLaunch() {

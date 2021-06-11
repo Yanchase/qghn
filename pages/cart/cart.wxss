@@ -429,7 +429,7 @@ page {
   border-top-right-radius: 50rpx;
   border-bottom-right-radius: 50rpx;
   letter-spacing: 3rpx;
-  background-image: linear-gradient(to right, #d44d24 0%, #d44d24 100%);
+  background-image: linear-gradient(to right, #eb5a2e 0%, #eb5a2e 100%);
 }
 
 .action_btn_area .delete {
@@ -449,7 +449,7 @@ page {
   border-top-right-radius: 80rpx;
   border-bottom-right-radius: 80rpx;
   letter-spacing: 3rpx;
-  background-image: linear-gradient(to right, #d44d24 0%, #d44d24 100%);
+  background-image: linear-gradient(to right, #eb5a2e 0%, #eb5a2e 100%);
 }
 
 .action_btn_area .sure {

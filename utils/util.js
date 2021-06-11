@@ -42,7 +42,7 @@ function request(url, data = {}, method = "GET") {
             }
             // 切换到登录页面
             wx.navigateTo({
-              url: '/pages/auth/login/login'
+              url: '/pages/login/login'
             });
           } else {
             resolve(res.data);
@@ -63,7 +63,7 @@ function request(url, data = {}, method = "GET") {
 function redirect(url) {
   if (false) {
     wx.redirectTo({
-      url: '/pages/auth/login/login'
+      url: '/pages/login/login'
     });
     return false;
   } else {
