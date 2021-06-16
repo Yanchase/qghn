@@ -14,7 +14,7 @@
 <!--物品浏览-->
   <view class="stuff_container">
     <van-grid wx:if="{{!isEmpty}}" column-num="2"  clickable="true">
-      <van-grid-item use-slot wx:for="{{stuffs}}" wx:key="key" link-type="navigateTo" url="">
+      <van-grid-item use-slot wx:for="{{stuffs}}" wx:key="key" link-type="navigateTo" url="/pages/goods/goods?id={{item.id}}">
         <view class="stuff_item">
           <image src="{{item.pic}}" mode="widthFix" style="width: 100%"></image>
           <text style="word-break: break-all; display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; margin-bottom: 20rpx;">{{item.name}}</text>
