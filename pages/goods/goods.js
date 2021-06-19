@@ -36,10 +36,7 @@ Page({
           goodspic: res.showUrl
         });
       }
-<<<<<<< HEAD
-=======
       WxParse.wxParse('goodsDetail', 'html', res.data.detail, that);
->>>>>>> master
     });
   },
   getGoodsSpec: function(){

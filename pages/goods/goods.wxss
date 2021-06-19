@@ -111,11 +111,7 @@
 .goods-info .counterPrice {
   float: left;
   padding-left: 0rpx;
-<<<<<<< HEAD
   font-size: 50rpx;
-=======
-  font-size: 45rpx;
->>>>>>> master
   color: #a78845;
 }
 
