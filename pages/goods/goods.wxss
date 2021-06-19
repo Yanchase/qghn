@@ -1,5 +1,5 @@
 .container {
-  margin-bottom: 100rpx;
+  margin-bottom: 10rpx;
 }
 
 .goodsimgs {
@@ -111,7 +111,11 @@
 .goods-info .counterPrice {
   float: left;
   padding-left: 0rpx;
+<<<<<<< HEAD
   font-size: 50rpx;
+=======
+  font-size: 45rpx;
+>>>>>>> master
   color: #a78845;
 }
 
@@ -127,8 +131,8 @@
   width: 600rpx;
   height: 108rpx;
   line-height: 108rpx;
-  font-size: 29rpx;
-  color: #333;
+  font-size: 30rpx;
+  color: #ccc;
   margin-left: 31.25rpx;
 }
 
@@ -137,7 +141,7 @@
   width: 52rpx;
   height: 52rpx;
   margin-right: 16rpx;
-  margin-top: 28rpx;
+  margin-top: 20rpx;
 }
 
 .section-act .t {
@@ -326,7 +330,7 @@
   text-align: center;
   color: #fff;
 }
-
+@import "../../lib/wxParse/wxParse.wxss";
 .bottom-btn .n {
   float: left;
   background: #d5d8d8e7;

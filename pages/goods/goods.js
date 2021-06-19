@@ -1,7 +1,7 @@
 // pages/goods/goods.js
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
-
+var WxParse = require('../../lib/wxParse/wxParse')
 Page({
 
   /**
@@ -10,6 +10,7 @@ Page({
   data: {
     id: 0,
     goods: {},
+    goodspic: [],
     specificationList: {},
     productList: [],
     cartGoodsCount: 0,
@@ -31,9 +32,14 @@ Page({
     }).then(function(res) {
       if (res.code == 0) {
         that.setData({
-          goods: res.data
+          goods: res.data,
+          goodspic: res.showUrl
         });
       }
+<<<<<<< HEAD
+=======
+      WxParse.wxParse('goodsDetail', 'html', res.data.detail, that);
+>>>>>>> master
     });
   },
   getGoodsSpec: function(){
@@ -41,11 +47,12 @@ Page({
     util.request(api.GoodSpec,{
       id: parseInt(that.data.id)
     }).then(function(res){
-      if(res.data==0){
+      if(res.code == 0){
         that.setData({
           specificationList: res.data
         });
       }
+      console.log(res.data)
     });
   },
 

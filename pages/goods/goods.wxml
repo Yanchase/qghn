@@ -1,12 +1,13 @@
 <view class="container">
-  <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
-    <swiper-item wx:for="{{goods.gallery}}" wx:key="*this">
+  <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000" style="width: 750rpx; height: 584rpx; display: block; box-sizing: border-box; left: NaNrpx; top: NaNrpx; margin-top: -200rpx">
+    <swiper-item wx:for="{{goodspic}}" wx:key="*this">
       <image src="{{item}}" background-size="cover"></image>
     </swiper-item>
   </swiper>
 
   <view class="goods-info">
     <view class="c">
+      <text class="goods_name">{{goods.name}}</text>
       <text class="desc jhx_f11">{{goods.brief}}</text>
       <view class="price">
         <view class="counterPrice jhx_f9">￥{{goods.counterPrice}}</view>
@@ -15,16 +16,17 @@
   </view>
 
   <view class="section-nav section-attr" bindtap="switchAttrPop">
-    <view class="t jhx_f4">{{checkedSpecText}}</view>
-    <image class="i jhx_f6" src="" background-size="cover"></image>
+    <view class="t jhx_f4" style="width: 600rpx; height: 86rpx; display: block; box-sizing: border-box; left: NaNrpx; top: NaNrpx">{{checkedSpecText}}</view>
   </view>
 
-</view>
-  <!-- <view class="detail">
-    <import src="" />
-    <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
-  </view> -->
 
+  <view class="detail">
+    <import src="/lib/wxParse/wxParse.wxml" />
+    <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
+  </view>
+
+  
+</view>
 
 <view class="attr-pop-box" hidden="{{!openAttr}}">
   <view class="attr-pop">
