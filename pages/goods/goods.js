@@ -28,15 +28,12 @@ Page({
     let that = this;
     util.request(api.GoodInfo, {
       id: parseInt(that.data.id)
-    }, 'POST').then(function(res) {
+    }).then(function(res) {
       if (res.code == 0) {
         that.setData({
           goods: res.data
         });
       }
-      console.log(that.data.id)
-      console.log(res)
-      console.log(res.data)
     });
   },
   getGoodsSpec: function(){
@@ -67,8 +64,6 @@ Page({
               _specificationList[i].valueList[j].checked = false;
             } else {
               _specificationList[i].valueList[j].checked = true;
-              //选择了，则判断当前是否有图片，且图片内容不能为空，不能为默认lazy图片，则替换
-              that.setSpecificationUrl(_specificationList[i].valueList[j].picUrl);
             }
           } else {
             _specificationList[i].valueList[j].checked = false;
@@ -110,7 +105,6 @@ Page({
       }
       checkedValues.push(_checkedObj);
     }
-
     return checkedValues;
   },
 
