@@ -10,19 +10,27 @@ Page({
     value:'',
     stuffs:[],
     isEmpty: false,
+    page: 1,
   },
   onLoad(e) {
-    let vs = this.selectComponent("#v-search")
-    console.log(vs)
+    var windowWidth = wx.getSystemInfoSync().windowWidth;
+    var windowHeight = wx.getSystemInfoSync().windowHeight;
+    var scroll_height = 750*windowHeight/windowWidth-100;
+     this.setData({
+        scroll_height:scroll_height
+    })
   },
-  onShow(e) {
-    if (this.data.value != '') {
-      this.getGoods(e, this.data.value);
-    }
+  scrolltoLower: function(e) {
+    this.data.page += 1
+    let page = this.data.page
+    this.getGoods(e, this.data.value, page)
   },
   //点击搜索或确认之后执行
   onSearch: function (e) {
-    this.onShow(e)
+    this.data.stuffs = []
+    if (this.data.value != '') {
+      this.getGoods(e, this.data.value, 1);
+    }
   },
   //点击取消按钮执行
   onCancel: function (e) {
@@ -33,25 +41,24 @@ Page({
   //动态更新控制值value
   changeInputValue: function (e) {
     this.data.value = e.detail;
+    if (e.detail == "") {
+      this.setData({
+        stuffs: []
+      })
+    }
   },
 
-  getGoods: function(e, name, category) {
+  getGoods: function(e, name, page) {
     let that = this;
-    let conditions = [];
     let quest = '';
     if (name != '') {
-      conditions.push("name="+name)
-    }
-    /*if (category != '全部') {
-      conditions.push()
-    }*/
-    if (conditions.length != 0) {
-      quest = "?"+conditions.join('')
+      quest = "?name="+name+"&page="+page
     }
     util.request(api.GoodList+quest).then(function(res) {
       if (res.msg == "success") {
+        let stuffs = that.data.stuffs.concat(res.data)
         that.setData({
-          stuffs: res.data
+          stuffs,
         })
       }
     });

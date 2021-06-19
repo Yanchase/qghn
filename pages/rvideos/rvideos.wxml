@@ -1,2 +1,24 @@
 <!--pages/rvideos/rvideos.wxml-->
-<text>pages/rvideos/rvideos.wxml</text>
+<view class="video_container">
+  <!--搜索框开始-->
+  <view class="search_bar">
+    <van-search bind:search="onSearch" bind:change="changeInputValue" placeholder="请输入搜索关键词"></van-search>
+  </view>
+  <!--搜索框结束-->
+  <!--录播视频浏览-->
+  <scroll-view class="scroll" style="height:{{scroll_height}}rpx; " scroll-y="true"
+    bindscrolltolower="scrolltoLower">
+    <view class="videos">
+      <van-grid wx:if="{{!isEmpty}}" gutter="30rpx" column-num="1" center="{{false}}" center="true">
+        <van-grid-item use-slot wx:for="{{videos}}" wx:key="key">
+          <view class="video_text">
+            <video enable-play-gesture show-mute-btn vslide-gesture id="{{item.id}}" class="video" title="{{item.fileIntroduction}}" src="{{item.fileUrl}}" bindplay="onPlay" bindpause="onPause"></video>
+            <text class="text">{{item.fileIntroduction}}</text>
+          </view>
+        </van-grid-item>
+      </van-grid>
+      <view style="display:flex; align-items:center; justify-content:center;" wx:else><text
+        style="margin-top: 60rpx; font-size: 50rpx; color: gray;">暂无更多录播</text></view>
+    </view>
+  </scroll-view>
+</view>

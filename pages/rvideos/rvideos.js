@@ -1,66 +1,86 @@
 // pages/rvideos/rvideos.js
+var util = require('../../utils/util.js')
+var api = require('../../config/api.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    value: "",
+    page: 1,
+    scroll_height: 0,
+    isEmpty: false,
+    videos:[],
+    playingVideo: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (e) {
+    this.getVideos(e, "", 1)
+    var windowWidth = wx.getSystemInfoSync().windowWidth;
+    var windowHeight = wx.getSystemInfoSync().windowHeight;
+    var scroll_height = 750 * windowHeight / windowWidth - 130;
+    this.setData({
+      scroll_height: scroll_height
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onSearch(e) {
+    this.data.value = e.detail
+    this.data.videos = []
+    this.data.page = 1
+    this.getVideos(e, e.detail, 1)
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  changeInputValue(e) {
+    if (e.detail == "") {
+      this.data.videos = []
+      this.data.page = 1
+      this.getVideos(e, "", 1)
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  scrolltoLower: function(e) {
+    this.data.page += 1;
+    let page = this.data.page;
+    this.getVideos(e, this.data.value, page);
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  onPlay(e) {
+    let videoContext = wx.createVideoContext(e.currentTarget.id);
+    let playingVideo = this.data.playingVideo;
+    if (playingVideo != "") {
+      playingVideo.pause()
+    }
+    this.data.playingVideo = videoContext;
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  onPause(e) {
+    let videoContext = wx.createVideoContext(e.currentTarget.id);
+    let playingViedo = this.data.playingVideo;
+    if (videoContext == playingViedo) {
+      this.data.playingVideo = ""
+    }
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  getVideos: function (e, name, page) {
+    let that = this;
+    if (name != '') {
+      var quest = "?name="+name+"&page="+page
+    } else {
+      var quest = "?page="+page
+    }
+    util.request(api.GetVideoList + quest).then(function (res) {
+      if (res.msg == "success") {
+        let videos = that.data.videos.concat(res.data)
+        that.setData({
+          videos,
+          isEmpty: (videos.length == 0)
+        })
+      }
+    });
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

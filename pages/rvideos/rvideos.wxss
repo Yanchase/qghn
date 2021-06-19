@@ -1,1 +1,36 @@
 /* pages/rvideos/rvideos.wxss */
+.video_container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+.scroll {
+  background-color: #eeeeee;
+  padding-top: 30rpx;
+}
+.videos {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.video_text {
+  width: 100%;
+  height: 430rpx;
+}
+.video {
+  width: 100%;
+  height: 360rpx;
+}
+.text {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

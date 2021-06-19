@@ -2,5 +2,6 @@
   "usingComponents": {
     "van-cell":"@vant/weapp/cell/index",
     "van-nav-bar":"@vant/weapp/nav-bar/index"
-  }
+  },
+  "navigationBarTitleText":"直播录播"
 }

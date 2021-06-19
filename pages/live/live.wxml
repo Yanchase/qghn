@@ -1,14 +1,20 @@
 <!--pages/live/live.wxml-->
-<image class="bg" src="http://sihon-temp.oss-cn-shanghai.aliyuncs.com/2021-06-15/58d5de34-4b55-4e7f-af81-cd913e558e03.jpg"></image>
+<image class="bg"
+  src="http://sihon-temp.oss-cn-shanghai.aliyuncs.com/2021-06-15/58d5de34-4b55-4e7f-af81-cd913e558e03.jpg"></image>
 <view class="live_container">
   <view class="main_live">
-    <image src="http://sihon-temp.oss-cn-shanghai.aliyuncs.com/2021-06-15/a0a0ec64-410b-4940-9404-c907a08084c5.jpg"></image>
-    <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId}}&custom_params={{customParams}}">
+    <image style="height:360rpx;width:100%;background-color: white;" mode="aspectFit" src="http://sihon-temp.oss-cn-shanghai.aliyuncs.com/2021-06-15/a0a0ec64-410b-4940-9404-c907a08084c5.jpg">
+    </image>
+    <navigator
+      url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId}}&custom_params={{customParams}}">
       <button>模块尚未开通</button>
     </navigator>
   </view>
   <view class="record_videos">
-    <van-nav-bar title="精彩回放"  right-text="更多" safe-area-inset-top='' bind:click-right="onClickRight"/>
-    <video class="video" src="http://sihon-temp.oss-cn-shanghai.aliyuncs.com/2021-06-11/6489e226-ed48-43d5-9beb-d3f248eeb0c9.mp4" bindplay="onVideoPlay"></video>
+    <van-nav-bar title="精彩回放" right-text="更多" safe-area-inset-top='' bind:click-right="onClickRight" />
+    <view id="record" class="video_text">
+      <video enable-play-gesture show-mute-btn vslide-gesture class="video" title="{{video.fileIntroduction}}" src="{{video.fileUrl}}"></video>
+      <text class="text">{{video.fileIntroduction}}</text>
+    </view>
   </view>
 </view>

@@ -4,17 +4,38 @@
   display: flex;
   flex-direction: column;
 }
+
 .stuff_item {
   display: flex;
   flex-direction: column;
 }
+
+.stuff_d {
+  width: 100%;
+  display: flex;
+  height: 60rpx;
+}
+
+.stuff_name {
+  line-height: 30rpx;
+  font-size: 25rpx;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .stuff_p_s {
   width: 100%;
   display: flex;
 }
+
 .price {
   margin-left: 0rpx;
 }
+
 .sale {
   margin: auto;
   margin-right: 0rpx;

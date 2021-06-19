@@ -25,12 +25,27 @@
   border: 3rpx;
 }
 .record_videos {
-  background-color: white;
-  height: 360rpx;
+  height: 500rpx;
   margin-left: 10%;
   margin-right: 10%;
+  background-color: white
+}
+.video_text {
+  width: 100%;
+  height: 80%;
 }
 .video {
   width: 100%;
-  height: 95%;
+  height: 320rpx;
+}
+.text {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

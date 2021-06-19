@@ -2,22 +2,25 @@
   <view class="bar_and_types">
     <!--搜索框开始-->
     <view class="search_bar" bindtap="onClick">
-      <van-search v-model="{{value}}" disabled placeholder="请输入搜索关键词"></van-search>
+      <van-search disabled placeholder="请输入搜索关键词"></van-search>
     </view>
     <!--搜索框结束-->
     <view class="stuff_types">
       <van-tabs sticky bind:change="onChange">
-        <van-tab wx:for="{{stuff_types}}" wx:key="key" title="{{item.type}}"></van-tab>
+        <van-tab wx:for="{{stuff_types}}" wx:key="key" title="{{item.name}}"></van-tab>
       </van-tabs>
     </view>
   </view>
-<!--物品浏览-->
-  <view class="stuff_container">
-    <van-grid wx:if="{{!isEmpty}}" column-num="2"  clickable="true">
-      <van-grid-item use-slot wx:for="{{stuffs}}" wx:key="key" link-type="navigateTo" url="/pages/goods/goods?id={{item.id}}">
+  <!--物品浏览-->
+  <scroll-view style="height:{{scroll_height}}rpx" scroll-y="true" bindscrolltolower="scrolltoLower">
+    <van-grid wx:if="{{!isEmpty}}" column-num="2" clickable="true" center="{{false}}">
+      <van-grid-item use-slot wx:for="{{stuffs}}" wx:key="key" link-type="navigateTo"
+        url="/pages/goods/goods?id={{item.id}}">
         <view class="stuff_item">
-          <image src="{{item.pic}}" mode="widthFix" style="width: 100%"></image>
-          <text style="word-break: break-all; display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; margin-bottom: 20rpx;">{{item.name}}</text>
+          <image src="{{item.pic}}" mode="aspectFit" style="height:300rpx;width: 100%"></image>
+          <view class="stuff_d">
+            <text class="stuff_name">{{item.name}}</text>
+          </view>
           <view class="stuff_p_s">
             <text class="price">￥{{item.retailPrice}}</text>
             <!--<text class="sale">{{item.sale}}件已售</text>-->
@@ -25,7 +28,7 @@
         </view>
       </van-grid-item>
     </van-grid>
-    <view style="display:flex; align-items:center; justify-content:center;" wx:else><text style="margin-top: 60rpx; font-size: 50rpx; color: gray;">暂无商品信息</text></view>
-  </view>
+    <view style="display:flex; align-items:center; justify-content:center;" wx:else><text
+        style="margin-top: 60rpx; font-size: 50rpx; color: gray;">暂无商品信息</text></view>
+  </scroll-view>
 </view>
-
