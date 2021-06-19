@@ -2,7 +2,7 @@
 Page({
   data: {
     roomId: [],
-    customParams: NaN
+    customParams: NaN,
   },
   onLoad(e) {
     let roomId = [200]
@@ -10,6 +10,11 @@ Page({
     this.setData({
       roomId,
       customParams
+    })
+  },
+  onClickRight(e) {
+    wx.navigateTo({
+      url: '../rvideos/rvideos',
     })
   }
 })

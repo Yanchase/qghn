@@ -1,14 +1,13 @@
 // pages/mine/mine.js
 Page({
   data: {
-       userinfo:{},
-       hasUserInfo: false,
-       canIUse: wx.canIUse('button.open-type.getUserInfo'),
-       canIUseGetUserProfile: false,
-       canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName')
+    userinfo:{},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    canIUseGetUserProfile: false,
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName')
   },
   getUserProfile(e) {
- 
     wx.getUserProfile({
       desc: '展示用户信息', 
       success: (res) => {
@@ -20,10 +19,11 @@ Page({
       }
     })
   },
-   onShow()
-   {
-     const userinfo=wx.getStorageSync("userinfo");
-     this.setData({userinfo});
-   }
+  onShow()
+  {
+    const userinfo=wx.getStorageSync("userinfo");
+    console.log(userinfo)
+    this.setData({userinfo});
+  }
 
 })

@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/mall/mall",
     "pages/cart/cart",
@@ -9,19 +9,20 @@
     "pages/logs/logs",
     "pages/search/search",
     "pages/paythebill/paythebill",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/rvideos/rvideos"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "拳购海南",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-tabbar": "@vant/weapp/tabbar/index",
     "van-tabbar-item": "@vant/weapp/tabbar-item/index",
-    "custom-tab-bar":"/custom-tab-bar/index"
+    "custom-tab-bar": "/custom-tab-bar/index"
   },
   "tabBar": {
     "custom": true,
@@ -36,15 +37,15 @@
       },
       {
         "pagePath": "pages/live/live",
-        "text":"直播"
+        "text": "直播"
       },
       {
         "pagePath": "pages/cart/cart",
-        "text":"购物车"
+        "text": "购物车"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text":"我的"
+        "text": "我的"
       }
     ]
   },
