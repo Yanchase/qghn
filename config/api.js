@@ -4,7 +4,7 @@
    var WxApiRoot = 'http://www.ytalk.shop:8083/';
 
  module.exports = {
-  AuthLoginByWeixin: WxApiRoot + '', //微信登录
+  AuthLoginByWeixin: WxApiRoot + '/qghn/user/login_by_weixin', //微信用户登录
   GoodSpec: WxApiRoot + 'qghn/goods-specification/get_goods_spec',  //获取商品规格
   GoodPrice: WxApiRoot + 'qghn/goods-product/get_price', //单个商品计价
   GoodAttri: WxApiRoot + 'qghn/goods-attribute/get_attri', //商品参数

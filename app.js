@@ -10,8 +10,15 @@ App({
       }
     })
   },
+  
   globalData: {
     userInfo: null,
+<<<<<<< Updated upstream
     openId:''
   }
 })
+=======
+    Token:null
+}
+})
+>>>>>>> Stashed changes

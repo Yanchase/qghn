@@ -23,7 +23,11 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
+<<<<<<< Updated upstream
     "useApiHostProcess": true,
+=======
+    "useApiHostProcess": false,
+>>>>>>> Stashed changes
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],

@@ -1,5 +1,10 @@
 {
   "pages": [
+<<<<<<< Updated upstream
+=======
+    "pages/login/login",
+    "pages/personinfo/personinfo",
+>>>>>>> Stashed changes
     "pages/index/index",
     "pages/mall/mall",
     "pages/cart/cart",
@@ -10,7 +15,11 @@
     "pages/search/search",
     "pages/paythebill/paythebill",
     "pages/order/order",
+<<<<<<< Updated upstream
     "pages/rvideos/rvideos"
+=======
+    "pages/test/test"
+>>>>>>> Stashed changes
   ],
   "window": {
     "backgroundTextStyle": "light",
