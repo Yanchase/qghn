@@ -48,7 +48,7 @@ Page({
   },
   getCartList: function() {
     let that = this;
-    util.request(api.GetCart,{UserId:"3"}).then(function(res){
+    util.request(api.GetCart,{UserId:"3"},'GET').then(function(res){
       console.log(res.code);
       if (res.code === 0) {
         that.setData({

@@ -41,7 +41,8 @@ Page({
         that.setData({
           goods: res.data,
           goodspic: res.showUrl,
-          specurl: res.data.picUrl
+          specurl: res.data.picUrl,
+          goodsId: res.data.id
         });
       }
       WxParse.wxParse('goodsDetail', 'html', res.data.detail, that);
@@ -94,9 +95,8 @@ Page({
         console.log(this.data.checked)
         console.log(this.data)
       },
-
+      //基础信息和规格
   onLoad: function(options) {
-    // 页面初始化 options为页面跳转所带来的参数
     if (options.id) {
       this.setData({
         id: parseInt(options.id)
@@ -104,9 +104,18 @@ Page({
       this.getGoodsInfo();
       this.getGoodsSpec(options.id);
     }
+    console.log(this.data)
   },
+  //下栏购物车数量显示
   onShow: function() {
-    // 页面显示
+    let that = this;
+    util.request(api.GetCart,{
+      UserId: 3
+    },'GET').then(function(res){
+      that.setData({
+        cartGoodsCount: res.data.list.length
+      })
+    })
   },
 
   //立即购买（先自动加入购物车）
@@ -131,7 +140,7 @@ Page({
       //立即购买
       util.request(api.AddCart, {
           userId: 3, 
-          goodsId: this.data.goods_id,
+          goodsId: this.data.id,
           number: this.data.number,
           productId: this.data.productId
         }, "POST")
@@ -167,29 +176,20 @@ Page({
       }
 
       //添加到购物车
-      util.request(api.AddCart, {
-          userId: 3,
-          goodsId: this.data.goods_id,
+      util.requestp(api.AddCart, {
+          UserId: 3,
+          goodsId: this.data.goodsId,
           number: this.data.number,
           productId: this.data.productId
-        }, "POST")
-        .then(function(res) {
+        }, "POST").then(function(res) {
           if (res.code == 0) {
             wx.showToast({
               title: '添加成功'
             });
             that.setData({
-              //cartGoodsCount: res.data
+              openAttr: !this.data.openAttr,
+              cartGoodsCount: res.data
             });
-            if (that.data.userHasCollect == 1) {
-              that.setData({
-                collect: true
-              });
-            } else {
-              that.setData({
-                collect: false
-              });
-            }
           } else {
             util.showErrorToast(res.msg);
           }

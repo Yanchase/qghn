@@ -59,6 +59,33 @@ function request(url, data = {}, method = "GET") {
   });
 }
 
+// 封装post请求
+function requestp (url, data, method = "POST") {
+  var promise = new Promise(function (resolve, reject) {
+    //网络请求
+    wx.request({
+      url: url,
+      data: data,
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'token':wx.getStorageSync('token')
+      },
+      method: method,
+      success: function (res) {//服务器返回数据
+        if (res.statusCode == 200) {
+          resolve(res.data);
+        } else {//返回错误提示信息
+          reject(res.data);
+        }
+      },
+      fail: function (e) {
+        reject(e);
+      }
+    })
+  });
+  return promise;
+}
+
 //判断页面是否需要登录
 function redirect(url) {
   if (false) {
@@ -83,6 +110,7 @@ function showErrorToast(msg) {
 module.exports = {
   formatTime,
   request,
+  requestp,
   redirect,
   showErrorToast
 }
