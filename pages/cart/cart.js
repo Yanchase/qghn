@@ -26,6 +26,7 @@ Page({
   },
 
   onShow: function() {
+    this.getCartList();
     // 页面显示
     if (app.globalData.hasLogin) {
       this.getCartList();
@@ -52,7 +53,6 @@ Page({
       if (res.code === 0) {
         that.setData({
           cartGoods: res.data.list,
-         // cartTotal: res.data.cartTotal
         });
 
         that.setData({
