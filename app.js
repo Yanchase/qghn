@@ -15,8 +15,6 @@ App({
     userInfo: null,
     openId:'',
     Token:null
-
-    
 }
 })
 

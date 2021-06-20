@@ -1,8 +1,9 @@
-// pages/mine/mine.js
+// 设置全局变量token
+var app = getApp();
+
 Page({
 
   data: {
-
     userInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: false,
@@ -14,7 +15,6 @@ Page({
         canIUseGetUserProfile: true
       })
     }
-
   },
   
   getUserProfile(e) {
@@ -24,6 +24,24 @@ Page({
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
+        })
+
+        //获取token
+        wx.login
+        ({
+          success:function(res){
+          var code = res.code;
+          wx.request({
+            url: "http://www.ytalk.shop:8083/qghn/user/login_by_weixin?code=" + code,
+            method: "POST",
+            success: function(res) {
+              //设置全局token
+              app.globalData.token=res.data.token
+              console.log(app.globalData.token)
+            }
+          })
+      
+          }    
         })
       }
     })

@@ -1,20 +1,17 @@
 {
   "pages": [
-    "pages/login/login",
-    "pages/personinfo/personinfo",
     "pages/index/index",
+    "pages/mine/mine",
+    "pages/personinfo/personinfo",
     "pages/mall/mall",
     "pages/cart/cart",
     "pages/live/live",
-    "pages/mine/mine",
     "pages/goods/goods",
     "pages/logs/logs",
     "pages/search/search",
     "pages/paythebill/paythebill",
     "pages/order/order",
-    "pages/rvideos/rvideos",
-    "pages/test/test"
-
+    "pages/rvideos/rvideos"
   ],
   "window": {
     "backgroundTextStyle": "light",
