@@ -27,15 +27,11 @@ Page({
    // 获取商品信息
    getGoodsInfo: function() {
     let that = this;
-<<<<<<< Updated upstream
+
     util.request(api.GoodInfo, {
       id: parseInt(that.data.id)
-=======
-    util.request(
-      api.GoodInfo, 
-    {
-      id: that.data.id
->>>>>>> Stashed changes
+
+
     }).then(function(res) {
       if (res.code == 0) {
         that.setData({
