@@ -5,15 +5,21 @@
 
  module.exports = {
 <<<<<<< HEAD
+<<<<<<< HEAD
   AuthLoginByWeixin: WxApiRoot + '/qghn/user/login_by_weixin', //微信用户登录
   GoodSpec: WxApiRoot + 'qghn/goods-specification/get_goods_spec',  //获取商品规格
   GoodPrice: WxApiRoot + 'qghn/goods-product/get_price', //单个商品计价
   GoodAttri: WxApiRoot + 'qghn/goods-attribute/get_attri', //商品参数
 =======
+=======
+>>>>>>> master
   AuthLoginByWeixin: WxApiRoot + '', //微信登录
   GoodSpec: WxApiRoot + 'qghn/goods-product/get_price',  //获取商品规格
   //GoodPrice: WxApiRoot + 'qghn/goods-product/get_price', //单个商品计价
   //GoodAttri: WxApiRoot + 'qghn/goods-product/get_price', //商品参数
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
   GoodInfo: WxApiRoot +'qghn/goods-basic-info/get_goods_info',  //商品主页
   GoodList: WxApiRoot +'qghn/goods-basic-info/getList', //获取所有商品列表
