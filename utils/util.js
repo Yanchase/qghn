@@ -26,7 +26,7 @@ function request(url, data = {}, method = "GET") {
       method: method,
       header: {
         'Content-Type': 'application/json',
-        'X-Dts-Token': wx.getStorageSync('token')
+        'X-Token': wx.getStorageSync('token')
       },
       success: function(res) {
 
@@ -73,9 +73,16 @@ function redirect(url) {
   }
 }
 
+function showErrorToast(msg) {
+  wx.showToast({
+    title: msg,
+    image: '/static/images/icon_error.png'
+  })
+}
 
 module.exports = {
   formatTime,
   request,
-  redirect
+  redirect,
+  showErrorToast
 }
