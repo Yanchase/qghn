@@ -22,12 +22,13 @@ Page({
     grouponLinkId: 0, //参与的团购
     grouponRulesId: 0 //团购规则ID
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    let cart = JSON.parse(options.cart)
   },
 
   //获取checkout信息
-  getCheckoutInfo: function() {
+  getCheckoutInfo: function () {
     let that = this;
     util.request(api.CartCheckout, {
       cartId: that.data.cartId,
@@ -35,7 +36,7 @@ Page({
       couponId: that.data.couponId,
       userCouponId: that.data.userCouponId,
       grouponRulesId: that.data.grouponRulesId
-    }).then(function(res) {
+    }).then(function (res) {
       if (res.errno === 0) {
         that.setData({
           checkedGoodsList: res.data.checkedGoodsList,
@@ -66,16 +67,16 @@ Page({
       url: '/pages/ucenter/couponSelect/couponSelect',
     })
   },
-  bindMessageInput: function(e) {
+  bindMessageInput: function (e) {
     this.setData({
       message: e.detail.value
     });
   },
-  onReady: function() {
+  onReady: function () {
     // 页面渲染完成
 
   },
-  onShow: function() {
+  onShow: function () {
     // 页面显示
     wx.showLoading({
       title: '加载中...',
@@ -122,15 +123,15 @@ Page({
 
     this.getCheckoutInfo();
   },
-  onHide: function() {
+  onHide: function () {
     // 页面隐藏
 
   },
-  onUnload: function() {
+  onUnload: function () {
     // 页面关闭
 
   },
-  submitOrder: function() {
+  submitOrder: function () {
     if (this.data.addressId <= 0) {
       util.showErrorToast('请选择收货地址');
       return false;
@@ -157,7 +158,7 @@ Page({
         const grouponLinkId = res.data.grouponLinkId;
         util.request(api.OrderPrepay, {
           orderId: orderId
-        }, 'POST').then(function(res) {
+        }, 'POST').then(function (res) {
           if (res.errno === 0) {
             const payParam = res.data;
             console.log("支付过程开始");
@@ -167,7 +168,7 @@ Page({
               'package': payParam.packageValue,
               'signType': payParam.signType,
               'paySign': payParam.paySign,
-              'success': function(res) {
+              'success': function (res) {
                 console.log("支付过程成功");
                 if (grouponLinkId) {
                   setTimeout(() => {
@@ -181,13 +182,13 @@ Page({
                   });
                 }
               },
-              'fail': function(res) {
+              'fail': function (res) {
                 console.log("支付过程失败");
                 wx.redirectTo({
                   url: '/pages/payResult/payResult?status=0&orderId=' + orderId
                 });
               },
-              'complete': function(res) {
+              'complete': function (res) {
                 console.log("支付过程结束")
               }
             });

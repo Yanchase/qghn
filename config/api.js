@@ -21,5 +21,6 @@
   DeleteCart: WxApiRoot + 'qghn/cart/delete',
   AddCart:WxApiRoot + 'qghn/cart/add',
   UpdateCart: WxApiRoot + 'qghn/cart/update',
+  UpdateChoose: WxApiRoot + 'qghn/cart/updateChoose',
   CartCheckout: WxApiRoot + 'qghn/user/address/getlist'
  };

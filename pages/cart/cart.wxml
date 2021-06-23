@@ -1,45 +1,33 @@
-<view class="no-cart" wx:if="{{cartGoods.length <= 0}}">
-<view class="c">
-        <text>空空如也~</text>
-        <text>去添加点什么吧</text>
-</view>
-</view>
-    <view class="cart-view" wx:else>
-      <view class="list">
-        <view class="group-item">
-          <view class="goods">
-            <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{cartGoods}}" wx:key="id">
-              <van-checkbox value="{{ item.checked }}" bind:change="checkedItem" data-item-index="{{index}}"></van-checkbox>
-              <view class="cart-goods">
-                <image class="img" src="{{item.picUrl}}"></image>
-                <view class="info">
-                  <view class="t">
-                    <text class="name">{{item.goodsName}}</text>
-                    <text class="num">x{{item.number}}</text>
-                  </view>
-                  <view class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.specifications||''}}</view>
-                  <view class="b">
-                    <text class="price">￥{{item.price}}</text>
-                    <view class="selnum">
-                      <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
-                      <input value="{{item.number}}" class="number" disabled="true" type="number" />
-                      <view class="add" bindtap="addNumber" data-item-index="{{index}}">+</view>
-                    </view>
-                  </view>
-                </view>
-              </view>
+<view class="main_container">
+  <view class="top_view">
+    <text class="goods_count">共{{cartGoods.length}}件商品</text>
+    <text class="control_button" bindtap="onControl">{{editing?"取消":"管理"}}</text>
+  </view>
+  <view wx:if="{{isEmpty}}" style="display:flex; align-items:center; justify-content:center;">
+    <text class="empty_cart_text">购物车里空空如也，去逛逛吧</text>
+  </view>
+  <view wx:else class="nempty_view">
+    <scroll-view style="height:{{scroll_height}}rpx" scroll-y="true">
+      <view class="item" wx:for="{{cartGoods}}" wx:for-index="index" wx:key="key">
+        <van-checkbox name="{{item.id}}" data-index="{{index}}" class="checkbox" icon-size="25px" value="{{item.checked}}" bind:change="onCheck">
+        </van-checkbox>
+        <van-card title="{{item.goodsName}}" thumb="{{item.picUrl}}" title-class="card_text" custom-class="card">
+          <view slot="bottom" class="card_num">
+            <view class="bottom_left">
+              <text style="font-size:30rpx; color:red; font-weight:bold;">￥{{item.price}}</text>
+            </view>
+            <view class="bottom_right">
+              <van-button custom-style="height:60rpx; width:60rpx;" data-index="{{index}}" disabled="{{item.number==1}}" icon="minus" bind:click="minus"></van-button>
+              <view class="num_text"><text style="font-size:30rpx;">×{{item.number}}</text></view>
+              <van-button custom-style="height:60rpx; width:60rpx;" data-index="{{index}}" icon="plus" bind:click="plus"></van-button>
             </view>
           </view>
-        </view>
-
+        </van-card>
       </view>
-      <view class="cart-bottom">
-        <van-checkbox value="{{ checkedAllStatus }}" bind:change="checkedAll">全选（{{cartTotal.checkedGoodsCount}}）</van-checkbox>
-        <view class="total">{{!isEditCart ? '￥'+cartTotal.checkedGoodsAmount : ''}}</view>
-        <view class='action_btn_area'>
-          <view class="{{!isEditCart ? 'edit' : 'sure'}}" bindtap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view>
-          <view class="delete" bindtap="deleteCart" wx:if="{{isEditCart}}">删除({{cartTotal.checkedGoodsCount}})</view>
-          <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">下单</view>
-          </view>
-        </view>
-      </view>
+    </scroll-view>
+  </view>
+  <view class="bottom_view">
+    <van-checkbox icon-size="25px" class="check_all" value="{{checkedAllStatus}}" bind:change="onCheckAll">全选</van-checkbox>
+    <van-button round class="confirm_button" bind:click="onConfirm">{{editing?"删 除":"结 算"}}</van-button>
+  </view>
+</view>
