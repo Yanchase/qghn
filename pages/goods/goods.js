@@ -14,8 +14,8 @@ Page({
     speclist: [],
     numlist: [],
     valuelist: [],
-    storenum: 0,
-    productId: 0,
+    storenum: 0,  //选中商品规格库存
+    productId: 0, //商品规格id
     specprice: 0,
     cartGoodsCount: 0,
     userHasCollect: 0,
@@ -48,6 +48,8 @@ Page({
       WxParse.wxParse('goodsDetail', 'html', res.data.detail, that);
     });
   },
+
+  //获取商品规格
   getGoodsSpec: function(){
     let that = this;
     util.request(api.GoodSpec, {
@@ -55,6 +57,7 @@ Page({
     }).then(function(res) {
       if(res.code == 0)
       {
+        console.log("这里有消息")
         that.setData({
           speclist: res.data
         })
@@ -62,40 +65,49 @@ Page({
     })
   },
 
+  //选中类型
   clickSkuValue: function(event){
       let that = this;
       let id = event.currentTarget.dataset.id;
       console.log(event)
       that.setData({
-        productId: event.currentTarget.dataset.id,
+        productId: id,
+        index:event.currentTarget.dataset.index
       })
       let _speclist = this.data.speclist;
+      //将库存变量设为选中商品的
       for(let i = 0; i < _speclist.length; i++)
       {
         if(_speclist[i].id == id)
         {
           that.setData({
-            storenum: _speclist[i].number
+            storenum: _speclist[i].number,
           })
         }
       }
+      //选中或取消选中
       for(let i = 0; i < _speclist.length; i++)
       {
         if(_speclist[i].id == id)
         {
-          if (_speclist[i].checked) {
-            _speclist[i].checked = false;
-          } else {
-            _speclist[i].checked = true;
-          }
+          
+          _speclist[i].checked = !_speclist[i].checked;
+          
+          this.setData({
+            speclist:_speclist
+          })
+          console.log(_speclist[i].checked)
         } else {
           _speclist[i].checked = false;
+          this.setData({
+            speclist:_speclist
+          })
         }
         }
-        console.log(this.data.checked)
         console.log(this.data)
       },
-      //基础信息和规格
+
+  //基础信息和规格
   onLoad: function(options) {
     if (options.id) {
       this.setData({
@@ -106,6 +118,7 @@ Page({
     }
     console.log(this.data)
   },
+
   //下栏购物车数量显示
   onShow: function() {
     let that = this;
@@ -127,7 +140,7 @@ Page({
         openAttr: !this.data.openAttr
       });
     } else {
-      for(let i = 0; i < speclist.length; i++)
+      for(let i = 0; i < this.data.speclist.length; i++)
       {
        
       }
@@ -137,26 +150,26 @@ Page({
         return false;
       }
 
-      //立即购买
-      util.request(api.AddCart, {
-          userId: 3, 
-          goodsId: this.data.id,
-          number: this.data.number,
-          productId: this.data.productId
-        }, "POST")
-        .then(function(res) {
-          if (res.code == 0) {
-            try {
-              wx.setStorageSync('cartId', res.data);
-              wx.navigateTo({
-                url: '/pages/paythebill/paythebill'
-              })
-            } catch (e) {}
+      let specilist=this.data.speclist[this.data.index];
+      console.log(specilist);
 
-          } else {
-            util.showErrorToast(res.msg);
-          }
-        });
+      //立即购买,整合信息
+      let cart=this.data.goods;
+      cart.UserId=3;
+      cart.number=this.data.number;
+      cart.productId=this.data.productId;
+      cart.specifications=specilist.specifications
+      
+      //跳转去购买
+      try {
+        wx.setStorageSync('cart', cart);
+        wx.navigateTo({
+          url: '/pages/paythebill/paythebill?cartId='+JSON.stringify([])
+        })
+      } catch (e) {}
+
+
+           
     }
   },
 
@@ -186,9 +199,10 @@ Page({
             wx.showToast({
               title: '添加成功'
             });
+            console.log(res);
             that.setData({
-              openAttr: !this.data.openAttr,
-              cartGoodsCount: res.data
+              openAttr: !that.data.openAttr,
+              cartGoodsCount: (that.data.cartGoodsCount+1)
             });
           } else {
             util.showErrorToast(res.msg);
@@ -197,11 +211,14 @@ Page({
     }
   },
 
+  //加入购物车商品的数量加操作
   cutNumber: function() {
     this.setData({
       number: (this.data.number - 1 > 1) ? this.data.number - 1 : 1
     });
   },
+
+  //加入购物车商品的数量减操作
   addNumber: function() {
     this.setData({
       number: this.data.number + 1
@@ -215,6 +232,7 @@ Page({
     // 页面关闭
 
   },
+  //查看商品规格
   switchAttrPop: function() {
     if (this.data.openAttr == false) {
       this.setData({
@@ -222,12 +240,14 @@ Page({
       });
     }
   },
+  //关闭规格窗口
   closeAttr: function() {
     this.setData({
       openAttr: false,
     });
   },
-
+  
+  //跳转到购物车
   openCartPage: function() {
     wx.switchTab({
       url: '/pages/cart/cart'

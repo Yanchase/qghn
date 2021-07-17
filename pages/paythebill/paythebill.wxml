@@ -6,8 +6,8 @@
         <text class="default" wx:if="{{checkedAddress.isDefault}}">默认</text>
       </view>
       <view class="m">
-        <text class="mobile">{{checkedAddress.tel}}</text>
-        <text class="address">{{checkedAddress.addressDetail}}</text>
+        <text class="mobile">{{checkedAddress.mobile}}</text>
+        <text class="address">{{checkedAddress.address}}</text>
       </view>
       <view class="r">
         <van-icon name="arrow" />
@@ -22,7 +22,7 @@
       </view>
     </view>
   </view>
-
+<!-- 
   <view class="coupon-box">
     <view class="coupon-item" bindtap="selectCoupon">
       <view class="l" wx:if="{{couponId == 0}}">
@@ -41,7 +41,7 @@
         <van-icon name="arrow" />      
       </view>
     </view>
-  </view>
+  </view> -->
 
   <view class="message-box">
     <input class="message-item" bindinput="bindMessageInput" placeholder="如需要，请输入留言" value="{{message}}" />
@@ -67,17 +67,17 @@
   </view>
 
   <view class="goods-items">
-    <view class="item" wx:for="{{checkedGoodsList}}" wx:key="id">
+    <view class="item" wx:for="{{checkedCartList}}" wx:key="id">
       <view class="img">
         <image src="{{item.picUrl}}"></image>
       </view>
       <view class="info">
         <view class="t">
-          <text class="name">{{item.goodsName}}</text>
+          <text class="name">{{item.name}}</text>
           <text class="number">x{{item.number}}</text>
         </view>
         <view class="m">{{item.specifications}}</view>
-        <view class="b">￥{{item.price}}</view>
+        <view class="b">￥{{item.retailPrice}}</view>
       </view>
     </view>
   </view>

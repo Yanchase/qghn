@@ -49,14 +49,14 @@
           "scene": null
         },
         {
-          "name": "pages/getOpenId/getOpenId",
-          "pathName": "pages/getOpenId/getOpenId",
+          "name": "pages/",
+          "pathName": "pages/order/order",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/test/test",
-          "pathName": "pages/test/test",
+          "name": "pages/address/address",
+          "pathName": "pages/address/address",
           "query": "",
           "scene": null
         }

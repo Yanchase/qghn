@@ -1,0 +1,32 @@
+<view bindtap="allOrderPage" class="allOrder">
+	<text class="allOrder-left">商店:拳购海南</text>
+	<text class="allOrder-right">订单编号:{{order.orderSn}}</text>
+</view>
+
+<view wx:for="{{orderGoods}}" wx:key="key" >
+<view bindtap="toOrderDetail" class="orderDetails">
+	<view class="orderListTitle">
+		<view class="userImg"><image src="{{userInfo.avatarUrl}}"></image></view>
+		<text class="userName">{{userInfo.nickName}}</text>
+		<text class="orderStatus">{{order.orderStatus}}</text>
+	</view>
+	<view class="orderListDetails">
+		<view class="productImg">
+			<image src="{{item.picUrl}}"></image>
+		</view>
+		<view class="productInfo">
+			<view class="productTitle">{{item.goodsName}}</view>
+			<text class="productPrice">￥{{item.price}}</text>
+			<text class="productQuantity">x{{item.number}}</text>
+		</view>
+	</view>
+	<view class="productCount">
+		<view>合计：￥<text>{{item.price*item.number}}</text></view>
+	</view>
+</view>	
+
+</view>
+  <view class='coent_list'>
+    <label class='coent_del' data-index='{{index}}'>取消订单</label>
+    <label class='coent_log_base'  data-index='{{index}}'>确认收货</label>
+  </view>

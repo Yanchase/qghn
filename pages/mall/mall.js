@@ -28,12 +28,14 @@ Page({
     })
   },
 
+  //前往搜索
   onClick: function (e) {
     wx.navigateTo({
       url: '../search/search'
     })
   },
 
+  //更改栏目
   onChange: function (e) {
     let title = e.detail.title
     let types = this.data.stuff_types
@@ -50,6 +52,7 @@ Page({
       for (x in types) {
         if (types[x].name == title) {
           let id = types[x].id
+          //获取相应商品
           this.getGoodbyCategory(e, id, 1)
           this.setData({
             id
@@ -59,6 +62,7 @@ Page({
     }
   },
 
+  //触底翻页
   scrolltoLower: function(e) {
     this.data.page += 1
     let page = this.data.page
@@ -70,6 +74,7 @@ Page({
     }
   },
 
+  //获取根目录
   getCategory: function(e) {
     var that = this;
     util.request(api.GetRootCate).then(function(res) {
@@ -79,6 +84,7 @@ Page({
           "name": "全部",
         }];
         r = r.concat(res.data)
+        console.log(res);
         that.setData({
           stuff_types: r
         })
@@ -86,6 +92,7 @@ Page({
     });
   },
 
+  //获取商品
   getGoods: function(e, page) {
     let that = this;
     util.request(api.GoodList+"?page="+page).then(function(res) {
@@ -99,6 +106,7 @@ Page({
     });
   },
 
+  //根据目录获取商品
   getGoodbyCategory: function(e, id, page) {
     let that = this;
     util.request(api.Goodlist+"/"+id+"?page="+page).then(function(res) {

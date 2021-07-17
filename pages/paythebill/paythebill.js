@@ -5,13 +5,13 @@ var app = getApp();
 
 Page({
   data: {
-    checkedGoodsList: [],
+    checkedCartList: [],
     checkedAddress: {},
-    availableCouponLength: 0, // 可用的优惠券数量
+    // availableCouponLength: 0, // 可用的优惠券数量
     goodsTotalPrice: 0.00, //商品总价
     freightPrice: 0.00, //快递费
-    couponPrice: 0.00, //优惠券的价格
-    grouponPrice: 0.00, //团购优惠价格
+    // couponPrice: 0.00, //优惠券的价格
+    // grouponPrice: 0.00, //团购优惠价格
     orderTotalPrice: 0.00, //订单总价
     actualPrice: 0.00, //实际需要支付的总价
     cartId: 0,
@@ -19,110 +19,156 @@ Page({
     couponId: 0,
     userCouponId: 0,
     message: '',
-    grouponLinkId: 0, //参与的团购
-    grouponRulesId: 0 //团购规则ID
-  },
-  onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-    let cart = JSON.parse(options.cart)
+    fromCart:true
+    // grouponLinkId: 0, //参与的团购
+    // grouponRulesId: 0 //团购规则ID
   },
 
-  //获取checkout信息
-  getCheckoutInfo: function () {
-    let that = this;
-    util.request(api.CartCheckout, {
-      cartId: that.data.cartId,
-      addressId: that.data.addressId,
-      couponId: that.data.couponId,
-      userCouponId: that.data.userCouponId,
-      grouponRulesId: that.data.grouponRulesId
-    }).then(function (res) {
-      if (res.errno === 0) {
-        that.setData({
-          checkedGoodsList: res.data.checkedGoodsList,
-          checkedAddress: res.data.checkedAddress,
-          availableCouponLength: res.data.availableCouponLength,
-          actualPrice: res.data.actualPrice,
-          couponPrice: res.data.couponPrice,
-          grouponPrice: res.data.grouponPrice,
-          freightPrice: res.data.freightPrice,
-          goodsTotalPrice: res.data.goodsTotalPrice,
-          orderTotalPrice: res.data.orderTotalPrice,
-          addressId: res.data.addressId,
-          couponId: res.data.couponId,
-          userCouponId: res.data.userCouponId,
-          grouponRulesId: res.data.grouponRulesId,
-        });
-      }
-      wx.hideLoading();
-    });
+  onLoad: function (options) {
+
+    wx.showLoading({
+      title: '加载中...',
+      mask:true
+    })
+    //获取地址
+    this.getAddress();
+    // 页面初始化 options为页面跳转所带来的参数
+    var temcartId=JSON.parse(options.cartId)
+    //大于零表示从购物车跳转到此页面
+    
+    if(temcartId.length>0){
+
+      let cartId = temcartId;
+      console.log(cartId);
+
+      this.getMoreCart(cartId);
+    //小于零表示从商品详情跳转而来
+    }else{
+      let temcart=[];
+      temcart.push(wx.getStorageSync('cart'))
+      console.log(temcart);
+      this.setData({
+        checkedCartList:temcart,
+        fromCart:false
+      })
+      this.calAllPrice();
+    }
+
+
   },
+
+  //获取购物车商品，结算购物车
+  getMoreCart: function(cartId){
+    util.requestp(api.GetMoreCart,{
+      UserId:3,
+      carIds:cartId
+    }).then(res=>{
+      console.log(res)
+      //调整部分属性名
+      res.data.forEach(function(element, index, array){
+        res.data[index].name=element.goodsName;
+        res.data[index].retailPrice=element.price;
+      });
+      console.log(res.data);
+      this.setData({
+        checkedCartList :res.data,
+        cartId:cartId
+      })
+      this.calAllPrice();
+    })
+  },
+
+  //计算订单总价
+  calAllPrice: function(){
+    
+    let goodsTotalPrice=this.data.goodsTotalPrice,actualPrice=this.data.actualPrice;
+    this.data.checkedCartList.forEach(function(element, index, array){
+
+      console.log(element);
+      if(element.counterPrice==null){
+        goodsTotalPrice=goodsTotalPrice+element.retailPrice*element.number;
+      }else{
+        goodsTotalPrice=goodsTotalPrice+element.counterPrice*element.number;
+      }
+      
+      actualPrice=actualPrice+(element.retailPrice)*(element.number)
+    })
+
+    console.log(goodsTotalPrice+actualPrice);
+    this.setData({
+      goodsTotalPrice:goodsTotalPrice,
+      actualPrice:actualPrice
+    })
+
+    wx.hideLoading();
+  },
+
+
+  //获取地址
+  getAddress: function(){
+
+    let temAddress=wx.getStorageSync('checkedAddress');
+
+    console.log(temAddress);
+    if(temAddress!=""){
+      this.setData({
+        checkedAddress:temAddress
+      })
+      return;
+    }else{
+      util.request(api.GetAddress,{
+        UserId:3
+      }).then(res=>{
+
+        var that= this;
+        console.log(res);
+        res.data.forEach(function (element, index, array) {
+          if (element.isDefault == true) {
+            that.setData({
+              checkedAddress:element,
+              addressId:element.id
+            })
+          }
+        });
+
+      })
+    }
+
+
+    
+  },
+
+  //重新选择地址
   selectAddress() {
     wx.navigateTo({
-      url: '/pages/ucenter/address/address',
+      url: '/pages/address/address',
     })
   },
-  selectCoupon() {
-    wx.navigateTo({
-      url: '/pages/ucenter/couponSelect/couponSelect',
-    })
-  },
+
+  // //选择优惠卷
+  // selectCoupon() {
+  //   wx.navigateTo({
+  //     url: '/pages/ucenter/couponSelect/couponSelect',
+  //   })
+  // },
+
+  //填写信息
   bindMessageInput: function (e) {
     this.setData({
       message: e.detail.value
     });
   },
+
   onReady: function () {
     // 页面渲染完成
 
   },
+
   onShow: function () {
-    // 页面显示
-    wx.showLoading({
-      title: '加载中...',
-    });
-    try {
-      var cartId = wx.getStorageSync('cartId');
-      if (cartId === "") {
-        cartId = 0;
-      }
-      var addressId = wx.getStorageSync('addressId');
-      if (addressId === "") {
-        addressId = 0;
-      }
-      var couponId = wx.getStorageSync('couponId');
-      if (couponId === "") {
-        couponId = 0;
-      }
-      var userCouponId = wx.getStorageSync('userCouponId');
-      if (userCouponId === "") {
-        userCouponId = 0;
-      }
-      var grouponRulesId = wx.getStorageSync('grouponRulesId');
-      if (grouponRulesId === "") {
-        grouponRulesId = 0;
-      }
-      var grouponLinkId = wx.getStorageSync('grouponLinkId');
-      if (grouponLinkId === "") {
-        grouponLinkId = 0;
-      }
-
-      this.setData({
-        cartId: cartId,
-        addressId: addressId,
-        couponId: couponId,
-        userCouponId: userCouponId,
-        grouponRulesId: grouponRulesId,
-        grouponLinkId: grouponLinkId
-      });
-
-    } catch (e) {
-      // Do something when catch error
-      console.log(e);
-    }
-
-    this.getCheckoutInfo();
+    
+   
   },
+
   onHide: function () {
     // 页面隐藏
 
@@ -131,67 +177,107 @@ Page({
     // 页面关闭
 
   },
+
+  //提交订单
   submitOrder: function () {
+
+
+
     if (this.data.addressId <= 0) {
       util.showErrorToast('请选择收货地址');
       return false;
     }
-    util.request(api.OrderSubmit, {
-      cartId: this.data.cartId,
-      addressId: this.data.addressId,
-      couponId: this.data.couponId,
-      userCouponId: this.data.userCouponId,
-      message: this.data.message,
-      grouponRulesId: this.data.grouponRulesId,
-      grouponLinkId: this.data.grouponLinkId
-    }, 'POST').then(res => {
-      if (res.errno === 0) {
 
-        // 下单成功，重置couponId
-        try {
-          wx.setStorageSync('couponId', 0);
-        } catch (error) {
+    var url=null, app=this.data;
+    var data={};
 
-        }
+    //根据跳转到订单页面的原页面，执行不同的请求
+    if(this.data.fromCart==true){
+      url=api.OrderSubmit;
+      data={
+        cartId:app.cartId,
+        userId:3,
+        addressId:app.addressId,
+        message:app.message
+      }
+    //商品详情页
+    }else{
+      url=api.OrderOneSubmit;
+      data={
+        addressId:app.addressId,
+        goodId:app.checkedCartList[0].id,
+        message:app.message,
+        number:app.checkedCartList[0].number,
+        productId:app.checkedCartList[0].productId,
+        userId:3,
+      }
+    }
+    util.requestp(url, data, 'POST').then(res => {
+      console.log(res);
+      if (res.code === 0) {
 
         const orderId = res.data.orderId;
-        const grouponLinkId = res.data.grouponLinkId;
-        util.request(api.OrderPrepay, {
-          orderId: orderId
+        console.log(orderId);
+        var that=app;
+
+        util.requestp(api.OrderPrepay, {
+          orderId:orderId,
+          userId:3
         }, 'POST').then(function (res) {
-          if (res.errno === 0) {
-            const payParam = res.data;
-            console.log("支付过程开始");
-            wx.requestPayment({
-              'timeStamp': payParam.timeStamp,
-              'nonceStr': payParam.nonceStr,
-              'package': payParam.packageValue,
-              'signType': payParam.signType,
-              'paySign': payParam.paySign,
-              'success': function (res) {
-                console.log("支付过程成功");
-                if (grouponLinkId) {
-                  setTimeout(() => {
-                    wx.redirectTo({
-                      url: '/pages/groupon/grouponDetail/grouponDetail?id=' + grouponLinkId
-                    })
-                  }, 1000);
-                } else {
-                  wx.redirectTo({
-                    url: '/pages/payResult/payResult?status=1&orderId=' + orderId
-                  });
-                }
-              },
-              'fail': function (res) {
-                console.log("支付过程失败");
-                wx.redirectTo({
-                  url: '/pages/payResult/payResult?status=0&orderId=' + orderId
-                });
-              },
-              'complete': function (res) {
-                console.log("支付过程结束")
-              }
+          console.log(res);
+          if (res.code === 0) {
+
+            wx.showToast({
+              title:"支付成功",
+              icon:"success",
+              duration:1500
             });
+            setTimeout(function(){
+               if(that.fromCart==true){
+                wx.switchTab({
+                  url: '/pages/cart/cart',
+                })
+                
+              }else{
+                
+                wx.switchTab({
+                  url: '/pages/mall/mall',
+                })
+              }
+            },1000);
+             
+            // const payParam = res.data;
+            // console.log("支付过程开始");
+            // wx.requestPayment({
+            //   'timeStamp': payParam.timeStamp,
+            //   'nonceStr': payParam.nonceStr,
+            //   'package': payParam.packageValue,
+            //   'signType': payParam.signType,
+            //   'paySign': payParam.paySign,
+            //   'success': function (res) {
+            //     console.log("支付过程成功");
+            //     if (grouponLinkId) {
+            //       setTimeout(() => {
+            //         wx.redirectTo({
+            //           url: '/pages/groupon/grouponDetail/grouponDetail?id=' + grouponLinkId
+            //         })
+            //       }, 1000);
+            //     } else {
+            //       wx.redirectTo({
+            //         url: '/pages/payResult/payResult?status=1&orderId=' + orderId
+            //       });
+            //     }
+            //   },
+            //   'fail': function (res) {
+            //     console.log("支付过程失败");
+            //     wx.redirectTo({
+            //       url: '/pages/payResult/payResult?status=0&orderId=' + orderId
+            //     });
+            //   },
+            //   'complete': function (res) {
+            //     console.log("支付过程结束")
+            //   }
+            // });
           } else {
             wx.redirectTo({
               url: '/pages/payResult/payResult?status=0&orderId=' + orderId
@@ -204,4 +290,5 @@ Page({
       }
     });
   }
+
 });

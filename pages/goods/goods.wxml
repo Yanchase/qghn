@@ -44,7 +44,8 @@
     </view>
 
     <view class="spec-con">
-      <view class="value {{item.checked ? 'selected' : ''}}" bindtap="clickSkuValue" wx:for="{{speclist}}" wx:key="id" data-id="{{item.id}}">
+      <view class="value {{item.checked ? 'selected' : ''}}" bindtap="clickSkuValue" wx:for="{{speclist}}" wx:key="id" data-index="{{index}}" data-id="{{item.id}}">
+        
         <view class="name">{{item.specifications}}</view>
         <!-- <view class="values">
           <view class="value {{vitem.checked ? 'selected' : ''}}" bindtap="clickSkuValue">

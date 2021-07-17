@@ -1,3 +1,6 @@
+const util = require("../../utils/util");
+const api = require("../../config/api");
+
 // pages/order/order.js
 Page({
 
@@ -6,29 +9,12 @@ Page({
    */
   data: {
     navbar: ['全部', '待付款', "待收货", "已完成"],
+    orderStatus:[101,201,301],
     currentTab: 0,
     index: 0,
     pick_name: "",
-    list: [{
-        bianhao: "3124356568797697978",
-        start: "已发货",
-        arry: [{
-            name: "轻奢纯棉刺绣水洗四件套",
-            image: "/image/cart/cart1.jpg",
-            money: "999",
-          },
-          {
-            name: "轻奢纯棉刺绣水洗四件套",
-            image: "/image/cart/cart2.jpg",
-            money: "1099",
-          },
-        ],
-        cont_count: "2",
-        count_money: "2098",
-      },
- 
-    ],
- 
+    list: [],
+    page: 1,
   },
  
   // 初始化加载
@@ -41,9 +27,27 @@ Page({
   //顶部tab切换
   navbarTap: function(e) {
     this.setData({
-      currentTab: e.currentTarget.dataset.index
+      currentTab: e.currentTarget.dataset.index,
+      chooseStatus:this.data.data.orderStatus[e.currentTarget.dataset.index]
     })
   },
+
+  //前往订单详情页面
+  getOrderDetail: function(option){
+    console.log(option.currentTarget.dataset["index"]);
+    const orderId=option.currentTarget.dataset["index"];
+    wx.navigateTo({
+      url: '../orderdetail/orderdetail?orderId='+orderId,
+    })
+  },
+
+  //触底加载
+  onReachBottom: function() {
+    this.data.page += 1
+    let page = this.data.page
+    this.getOrders(page)
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -63,7 +67,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.data.page = 1
+    this.data.list = []
+    this.getOrders(this.data.page)
+  },
 
+  getOrders (page) {
+    let that = this
+    util.GetOrder(api.GetOrder,{
+      page,
+      userId: 3
+    }).then(res=>{
+      console.log(res);
+      if (res.code == 0) {
+        try {
+          let list = that.data.list.concat(res.data)
+          this.setData({
+            list
+          })
+        } catch (e) {}
+
+      } else {
+        util.showErrorToast(res.msg);
+      }
+    })
   },
 
   /**
@@ -87,12 +114,6 @@ Page({
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
 
   /**
    * 用户点击右上角分享

@@ -1,0 +1,94 @@
+/* pages/myinformation/informenage/informenage.wxss */
+page{
+  height: 100%;
+  background-color: #F4F4F4;
+  display: flex;
+  flex-direction: column;
+}
+
+.infomodule{
+  width: 100%;
+  margin-top: 20rpx;
+  background-color: white;
+}
+
+.infopart{
+  width: 700rpx;
+  height: 100rpx;
+  margin-left: 20rpx;
+  border-bottom: 3px solid #F4F4F4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*所有name值的属性*/
+.namepart{
+  font-size: 16px;
+}
+
+/*所有key值的属性*/
+.keypart{
+  color: #9D9E9D;
+  font-size: 14px;
+  margin-right: 26rpx;
+}
+
+.nichen,.phone{
+  margin-right: 47rpx;
+}
+
+.construct{
+  color: #9D9E9D;
+  display: flex;
+  align-items: center;
+}
+
+.imagepart{
+  height: 150rpx;
+}
+
+.touxiang{
+  width: 125rpx;
+  height: 125rpx;
+  border-radius: 30px;
+  box-shadow: 0px 0px 2px 2px #BBBBBB;
+}
+
+
+.container{
+  height: 100%;
+  background-color: #F4F4F4;
+  display: flex;
+  flex-direction: column;
+}
+
+.nichen,.phone{
+  width: 320rpx;
+  margin-right: 47rpx;
+}
+
+.keypart{
+  color: black;
+  font-size: 14px;
+  margin-right: 26rpx;
+}
+
+.updatemodule{
+  margin-top: 250rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.update{
+  width: 350rpx;
+  background-color: #3894FF;
+  color: white;
+}
+
+.delete{
+  width: 350rpx;
+  background-color: rgba(255, 123, 0, 0.692);
+  color: white;
+}

@@ -5,6 +5,26 @@
   flex-direction: column;
 }
 
+.allstuff{
+border-style:solid;
+border-color:rgb(211,211,211);
+background-color:rgb(211,211,211) ;
+}
+
+.scroll-view{
+  border-style:solid;
+  border-color:rgb(211,211,211);
+}
+
+.van-grid-item__content {
+  border-style:solid;
+  border-color:rgb(211,211,211);
+  border-top-right-radius:0.5em;
+  border-top-left-radius:0.5em;
+  border-bottom-right-radius:0.5em;
+  border-bottom-left-radius:0.5em;
+}
+
 .stuff_item {
   display: flex;
   flex-direction: column;
@@ -18,7 +38,7 @@
 
 .stuff_name {
   line-height: 30rpx;
-  font-size: 25rpx;
+  font-size: 26rpx;
   font-weight: bold;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -34,6 +54,7 @@
 
 .price {
   margin-left: 0rpx;
+  color:rgb(252,1,26);
 }
 
 .sale {

@@ -1,0 +1,36 @@
+
+<view class="customerInfo">
+  <view class="customerInfo">
+    <view class="hd-title">
+      客户{{userInfo.nickName}}收货地址
+    </view>
+    
+    <view class="view-group" wx:for="{{addresslist}}" wx:for-item="list">
+      <view class="allthing">
+        <view class="group-hd"><image class="imgsize" src="/image/address/zuobiao.png"></image> 
+          <text class="font-color-c24e4e" wx:if="{{list.isDefault != false}}">默认</text>
+        </view>
+        <view class="group-bd">
+            <view class="group-bd-hd">
+              <text class="font-color-999">地址：{{list.address+list.detail}}</text>
+              <view class="group-icon" bindtap="">
+                <image bindtap="editAddress" data-aid="{{list.id}}" class="editstyle" src="/image/address/edit.png"></image>
+              </view>
+            </view>
+            <view class="consignee-info">
+                <view>收货人：<text class="font-color-999">{{list.name}}</text></view>
+                <view>电话：<text class="font-color-999">{{list.mobile}}</text></view>
+            </view>
+        </view>
+      </view>
+    </view>
+    <view class="bottom-box" bindtap="addAddress" wx:if="{{addresslist.length > 0 && addressEdit == false}}">
+      <view class="add-btn">
+        
+        <view>新增收货地址</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+

@@ -3,8 +3,9 @@
 
   <view class="userinfo">
     <block wx:if="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <!-- <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button> -->
+      <image class="userinfo-avatar" bindtap="getUserProfile" src="/image/mine/userurl.png"></image>
+      <text class="userinfo-nickname">点击头像登录</text>
     </block>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -12,15 +13,6 @@
     </block>
   </view>
 
-  <!-- <image class='mine-bg'  src='https://i.loli.net/2021/05/25/WHjthN7iT5Ipx28.jpg'></image>
-    <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
-      <view class="userinfo-avatar">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-  </view> -->
 </view> 
  
 <view class="user_content">
@@ -38,10 +30,10 @@
       text="订单"
       />
       <van-grid-item
-      icon="/image/grid/hongbao.png"
-      link-type="reLaunch"
-      url=""
-      text="红包"
+      icon="/image/mine/address.png"
+      link-type="navigateTo"
+      url="/pages/address/address"
+      text="收货地址"
       />
       <van-grid-item
       icon="/image/grid/youhuiquan.png"

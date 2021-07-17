@@ -9,7 +9,7 @@
   <view wx:else class="nempty_view">
     <scroll-view style="height:{{scroll_height}}rpx" scroll-y="true">
       <view class="item" wx:for="{{cartGoods}}" wx:for-index="index" wx:key="key">
-        <van-checkbox name="{{item.id}}" data-index="{{index}}" class="checkbox" icon-size="25px" value="{{item.checked}}" bind:change="onCheck">
+        <van-checkbox name="{{item.id}}" data-index="{{index}}" class="checkbox" icon-size="25px" value="{{item.checked}}" bind:change="onCheck"> 
         </van-checkbox>
         <van-card title="{{item.goodsName}}" thumb="{{item.picUrl}}" title-class="card_text" custom-class="card">
           <view slot="bottom" class="card_num">

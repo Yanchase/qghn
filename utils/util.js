@@ -65,9 +65,34 @@ function requestp (url, data, method = "POST") {
     //网络请求
     wx.request({
       url: url,
-      data: data,
+      data:data,
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
+        'token':wx.getStorageSync('token')
+      },
+      method: method,
+      success: function (res) {//服务器返回数据
+        if (res.statusCode == 200) {
+          resolve(res.data);
+        } else {//返回错误提示信息
+          reject(res.data);
+        }
+      },
+      fail: function (e) {
+        reject(e);
+      }
+    })
+  });
+  return promise;
+}
+
+
+function deleteAdd (url, data, method = "POST") {
+  var promise = new Promise(function (resolve, reject) {
+    //网络请求
+    wx.request({
+      url: url+"?UserId="+data.UserId+"&adressId="+data.addressId,
+      header: {
         'token':wx.getStorageSync('token')
       },
       method: method,
@@ -103,14 +128,180 @@ function redirect(url) {
 function showErrorToast(msg) {
   wx.showToast({
     title: msg,
-    image: '/static/images/icon_error.png'
+    image: '/image/Error.png'
   })
+}
+//获取订单
+function GetOrder(url,data){
+  var promise = new Promise(function (resolve, reject) {
+  //网络请求
+  wx.request({
+    url: url,
+    data: data,
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'token':wx.getStorageSync('token')
+    },
+    method: "GET",
+    success: function (res) {//服务器返回数据
+      if (res.statusCode == 200) {
+        resolve(res.data);
+      } else {//返回错误提示信息
+        reject(res.data);
+      }
+    },
+    fail: function (e) {
+      reject(e);
+    }
+  })
+  });
+  return promise;
+}
+
+//获取订单详情
+function GetOrderDetail(url,data){
+  var promise = new Promise(function (resolve, reject) {
+  //网络请求
+  wx.request({
+    url: url,
+    data: data,
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'token':wx.getStorageSync('token')
+    },
+    method: "GET",
+    success: function (res) {//服务器返回数据
+      if (res.statusCode == 200) {
+        resolve(res.data);
+      } else {//返回错误提示信息
+        reject(res.data);
+      }
+    },
+    fail: function (e) {
+      reject(e);
+    }
+  })
+  });
+  return promise;
+}
+
+//获取收货地址
+function GetAddress(url,data){
+  var promise = new Promise(function (resolve, reject) {
+  //网络请求
+  wx.request({
+    url: url,
+    data: data,
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'token':wx.getStorageSync('token')
+    },
+    method: "GET",
+    success: function (res) {//服务器返回数据
+      if (res.statusCode == 200) {
+        resolve(res.data);
+      } else {//返回错误提示信息
+        reject(res.data);
+      }
+    },
+    fail: function (e) {
+      reject(e);
+    }
+  })
+  });
+  return promise;
+}
+
+//添加收货地址
+function addAddress(url,data){
+  var promise = new Promise(function (resolve, reject) {
+  //网络请求
+  wx.request({
+    url: url+"?UserId="+data.UserId,
+    data: JSON.stringify(data.address) ,
+    header: {
+      'token':wx.getStorageSync('token')
+    },
+    method: "POST",
+    success: function (res) {//服务器返回数据
+      if (res.statusCode == 200) {
+        resolve(res.data);
+      } else {//返回错误提示信息
+        reject(res.data);
+      }
+    },
+    fail: function (e) {
+      reject(e);
+    }
+  })
+  });
+  return promise;
+}
+
+//添加收货地址
+function GetOneAddress(url,data){
+  var promise = new Promise(function (resolve, reject) {
+  //网络请求
+  wx.request({
+    url: url,
+    data: data ,
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'token':wx.getStorageSync('token')
+    },
+    method: "GET",
+    success: function (res) {//服务器返回数据
+      if (res.statusCode == 200) {
+        resolve(res.data);
+      } else {//返回错误提示信息
+        reject(res.data);
+      }
+    },
+    fail: function (e) {
+      reject(e);
+    }
+  })
+  });
+  return promise;
+}
+
+// post请求添加到购物车
+function updateCart (url, data, method = "POST") {
+  var promise = new Promise(function (resolve, reject) {
+    //网络请求
+    wx.request({
+      url: url+"?UserId="+data.UserId,
+      data:JSON.stringify(data.cartCheckedVos),
+      header: {
+        'token':wx.getStorageSync('token')
+      },
+      method: method,
+      success: function (res) {//服务器返回数据
+        if (res.statusCode == 200) {
+          resolve(res.data);
+        } else {//返回错误提示信息
+          reject(res.data);
+        }
+      },
+      fail: function (e) {
+        reject(e);
+      }
+    })
+  });
+  return promise;
 }
 
 module.exports = {
   formatTime,
   request,
   requestp,
+  deleteAdd,
   redirect,
-  showErrorToast
+  showErrorToast,
+  GetOrder,
+  GetOrderDetail,
+  GetAddress,
+  addAddress,
+  GetOneAddress,
+  updateCart,
 }

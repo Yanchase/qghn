@@ -20,7 +20,18 @@
   GetVideoList: WxApiRoot + 'qghn/video-file/getlist', //获取录播视频
   DeleteCart: WxApiRoot + 'qghn/cart/delete',
   AddCart:WxApiRoot + 'qghn/cart/add',
+  GetMoreCart:WxApiRoot + 'qghn/cart/getinfobycar',
   UpdateCart: WxApiRoot + 'qghn/cart/update',
   UpdateChoose: WxApiRoot + 'qghn/cart/updateChoose',
-  CartCheckout: WxApiRoot + 'qghn/user/address/getlist'
+  CartCheckout: WxApiRoot + 'qghn/cart/getCheckCart',     //获取被选中的购物车商品
+  GetOrder:WxApiRoot + 'qghn/user/order/getAll',
+  GetOrderDetail:WxApiRoot + 'qghn/user/order/getDetail',
+  OrderSubmit:WxApiRoot + 'qghn/user/order/submitOrder',
+  OrderOneSubmit:WxApiRoot + 'qghn/user/order/submitOrderOne',
+  OrderPrepay:WxApiRoot + 'qghn/user/order/buySuccess',
+  GetAddress:WxApiRoot+'qghn/user/address/getlist',
+  AddAddress:WxApiRoot+'qghn/user/address/addAdress',
+  UpdateAddress:WxApiRoot+'qghn/user/address/updateAdress',
+  GetOneAddress:WxApiRoot+'qghn/user/address/getOneAdress',
+  DeleteAddress:WxApiRoot+'qghn/user/address/delete',
  };

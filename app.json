@@ -11,7 +11,11 @@
     "pages/search/search",
     "pages/paythebill/paythebill",
     "pages/order/order",
-    "pages/rvideos/rvideos"
+    "pages/rvideos/rvideos",
+    "pages/orderdetail/orderdetail",
+    "pages/address/address",
+    "pages/addressedit/addressedit",
+    "pages/addressadd/addressadd"
   ],
   "window": {
     "backgroundTextStyle": "light",

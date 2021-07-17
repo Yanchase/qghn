@@ -1,0 +1,68 @@
+<!--pages/myinfo/infoupdate/infoupdate.wxml-->
+<view class="container1">
+
+<form bindsubmit="toupdate" class="formtype">
+  <!--信息板块--> 
+  <view class="infomodule">
+
+    <!--头像信息-->
+    <!--view class="infopart">
+      <text class="namepart">头像</text>
+      <view class="construct" bindtap="uploadImage">
+        <image class="touxiang keypart" src="{{avatarUrl}}"></image>
+      </view>
+    </view-->
+
+    <!--昵称信息-->
+    <view class="infopart">
+      <text class="namepart">收货人姓名</text>
+      <input class="nichen keypart" type="text" name="name"  placeholder="收款人" value="{{address.name}}" />
+    </view>
+
+    <!--手机号信息-->
+    <view class="infopart">
+      <text class="namepart">手机号码</text>
+      <input class="phone keypart" type="text" name="mobile"  placeholder="最常使用" value="{{address.mobile}}" />
+    </view>
+
+
+    <!-- 地址信息-->
+    <view class="infopart">
+      <text class="namepart">地址</text>
+      <view class="construct">
+        <picker mode="region" bindchange="bindRegionChange">
+          <input class="address keypart" type="text" name="address"  placeholder="选择省/市/区" value="{{address.province+address.city+address.area}}" />
+        </picker>
+      </view>
+    </view>
+
+    <!--详细地址信息-->
+    <view class="infopart">
+      <text class="namepart">详细地址</text>
+      <view class="construct">
+        <input class="detailaddress keypart" type="text" maxlength="30" name="detail"  placeholder="街道/门牌/房间号等" value="{{user.detail}}"/>
+      </view>
+    </view>
+
+    <!--是否默认-->
+    <view class="infopart">
+          <text class="namepart">是否设为默认地址</text>
+          <view class="construct">
+            <radio class="phone keypart" checked="{{checked}}" bindtap="changeradio"></radio>
+          </view>
+    </view>
+
+    <input hidden="true" name="province" value="{{address.province}}"/>
+    <input hidden="true" name="city" value="{{address.city}}"/>
+    <input hidden="true" name="area" value="{{address.area}}"/>
+    
+  </view>
+
+  <!--按钮板块-->
+  <view class="updatemodule">
+    <button class="update" formType="submit">确认保存</button>
+  </view>
+
+</form>
+
+</view>

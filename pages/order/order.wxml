@@ -4,50 +4,115 @@
     <text>{{item}}</text>
   </lable>
 </view>
-<view hidden="{{currentTab!==0}}" class='total' style='background-color: #EBEBEB;'>
-  <view wx:if="{{list.length>0}}">
-    <view class='cont_count' wx:for="{{list}}" wx:key="key">
-      <view class='seria'>
-        <label class='seriac_name'>
-          订单编号
-          <text>{{item.bianhao}}</text>
-        </label>
-        <label class='seriac_start'>
-          {{item.start}}</label>
-      </view>
-      <view class='list' wx:for="{{item.arry}}" wx:for-item="arr_item" wx:key="key">
-        <image class='list_img' src='{{arr_item.image}}'></image>
-        <label class='list_name'>
-          {{arr_item.name}}
-        </label>
-        <label class='list_money'>￥{{arr_item.money}}</label>
-      </view>
-      <view class='count_eg'>
-        <view class='count_cent'>
-          <label class='cont_cent_name'>
-            共{{item.cont_count}}件商品
+
+  <view hidden="{{currentTab!==0}}" class='total' style='background-color: #EBEBEB;'>
+    <view wx:if="{{list.length>0}}">
+      <view class='cont_count' wx:for="{{list}}" wx:key="key">
+        <view class='seria' wx:if="{{chooseStatus==list.orderStatus}}">
+          <label class='seriac_name'>
+            订单编号
+            <text>{{item.orderSn}}</text>
           </label>
-          <lable class='cont_cen_money'>
-            <text class='cont_ce_mon'>合计:￥{{item.count_money}}</text>
-          </lable>
+          <label class='seriac_start'>
+            {{item.orderStatus}}</label>
+        
+        <view class='list' bindtap="getOrderDetail" data-index="{{item.id}}">
+          <image class='list_img' src='{{item.picUrl}}'></image>
+          <label class='list_name'>
+            {{item.orderName}}
+          </label>
+          <view class='list_money'>
+            <view class='count_eg'>
+              <!-- <view class='count_cent'> -->
+                <label class='cont_cent_name'>
+                  共{{item.orderGoodsNum}}件商品
+                </label>
+                <lable class='cont_cen_money'>
+                  <text class='cont_ce_mon'>合计:￥{{item.actualPrice}}</text>
+                </lable>
+              <!-- </view> -->
+            </view>
+          </view>
+          <!-- <label class='list_money'>￥{{item.actualPrice}}</label> -->
+        <!-- <view class='count_eg'>
+          <view class='count_cent'>
+            <label class='cont_cent_name'>
+              共{{item.orderGoodsNum}}件商品
+            </label>
+            <lable class='cont_cen_money'>
+              <text class='cont_ce_mon'>合计:￥{{item.actualPrice}}</text>
+            </lable>
+          </view>
+        </view> -->
+      </view>
+      
+        <view class='coent_list'>
+          <label class='coent_del' data-index='{{index}}'>取消订单</label>
+          <label class='coent_log_base'  data-index='{{index}}'>确认收货</label>
         </view>
       </view>
-      <view class='coent_list'>
-        <label class='coent_del' data-index='{{index}}'>取消订单</label>
-        <label class='coent_log_base'  data-index='{{index}}'>确认收货</label>
+    </view>
+    </view>
+    <view wx:else>
+      <view class='cont_count'>
+        <label class='none_tab'>亲,您还暂未下单哦~~</label>
       </view>
     </view>
-  </view>
-  <view wx:else>
-    <view class='cont_count'>
-      <label class='none_tab'>亲,您还暂未下单哦~~</label>
-    </view>
-  </view>
- 
+  
 </view>
- 
+
 <view hidden="{{currentTab!==1}}">
- 
+  <view wx:if="{{list.length>0}}">
+      <view class='cont_count' wx:for="{{list}}" wx:key="key">
+        <view class='seria' wx:if="{{orderStatus[currentTab]==list.orderStatus}}">
+          <label class='seriac_name'>
+            订单编号
+            <text>{{item.orderSn}}</text>
+          </label>
+          <label class='seriac_start'>
+            {{item.orderStatus}}</label>
+        </view>
+        <view class='list' bindtap="getOrderDetail" data-index="{{item.id}}">
+          <image class='list_img' src='{{item.picUrl}}'></image>
+          <label class='list_name'>
+            {{item.orderName}}
+          </label>
+          <view class='list_money'>
+            <view class='count_eg'>
+              <!-- <view class='count_cent'> -->
+                <label class='cont_cent_name'>
+                  共{{item.orderGoodsNum}}件商品
+                </label>
+                <lable class='cont_cen_money'>
+                  <text class='cont_ce_mon'>合计:￥{{item.actualPrice}}</text>
+                </lable>
+              <!-- </view> -->
+            </view>
+          </view>
+          <!-- <label class='list_money'>￥{{item.actualPrice}}</label> -->
+        <!-- <view class='count_eg'>
+          <view class='count_cent'>
+            <label class='cont_cent_name'>
+              共{{item.orderGoodsNum}}件商品
+            </label>
+            <lable class='cont_cen_money'>
+              <text class='cont_ce_mon'>合计:￥{{item.actualPrice}}</text>
+            </lable>
+          </view>
+        </view> -->
+      </view>
+        <view class='coent_list'>
+          <label class='coent_del' data-index='{{index}}'>取消订单</label>
+          <label class='coent_log_base'  data-index='{{index}}'>确认收货</label>
+        </view>
+      
+    </view>
+    </view>
+    <view wx:else>
+      <view class='cont_count'>
+        <label class='none_tab'>亲,您还暂未下单哦~~</label>
+      </view>
+    </view>
 </view>
 
 <view hidden="{{currentTab!==2}}">

@@ -419,7 +419,6 @@
 .spec-con .name {
   margin-bottom: 6rpx;
   font-size: 29rpx;
-  color: #333;
 }
 
 .spec-con .values {

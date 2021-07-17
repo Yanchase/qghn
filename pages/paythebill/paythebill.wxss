@@ -8,14 +8,17 @@ page {
   height: 166.55rpx;
   background-size: 62.5rpx 10.5rpx;
   margin-bottom: 20rpx;
+  margin-top: 10rpx;
   padding-top: 10.5rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .address-item {
   display: flex;
-  height: 155.55rpx;
-  background: #fff;
-  padding: 41.6rpx 0 41.6rpx 31.25rpx;
+  height: 120rpx;
+  margin-left: 31.25rpx;
 }
 
 .address-item.address-empty {
@@ -92,6 +95,7 @@ page {
 .coupon-box {
   width: 100%;
   height: auto;
+  margin-top: 20rpx;
   overflow: hidden;
   background: #fff;
 }
@@ -141,9 +145,11 @@ page {
 .message-box {
   margin-top: 20rpx;
   width: 100%;
-  height: auto;
+  height: 80rpx;
   overflow: hidden;
   background: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .message-box .message-item {
@@ -153,7 +159,6 @@ page {
   display: flex;
   margin-left: 31.25rpx;
   padding-right: 31.25rpx;
-  padding-top: 26rpx;
 }
 
 .order-box {
@@ -257,6 +262,7 @@ page {
 .goods-items .t .number {
   display: block;
   float: right;
+  margin-right: 30rpx;
   text-align: right;
 }
 
