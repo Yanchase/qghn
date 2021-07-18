@@ -11,8 +11,12 @@
     "pages/search/search",
     "pages/paythebill/paythebill",
     "pages/order/order",
-    "pages/rvideos/rvideos",
     "pages/orderdetail/orderdetail",
+    "pages/orderbuy/order",
+    "pages/orderbuydetail/orderdetail",
+    "pages/orderex/order",
+    "pages/orderexdetail/orderdetail",
+    "pages/rvideos/rvideos",
     "pages/address/address",
     "pages/addressedit/addressedit",
     "pages/addressadd/addressadd"

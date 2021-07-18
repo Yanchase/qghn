@@ -38,7 +38,7 @@ Page({
     console.log(option.currentTarget.dataset["index"]);
     const orderId=option.currentTarget.dataset["index"];
     wx.navigateTo({
-      url: '../orderdetail/orderdetail?orderId='+orderId,
+      url: '../orderbuydetail/orderdetail?orderId='+orderId,
     })
   },
 
@@ -75,7 +75,7 @@ Page({
 
   getOrders (page) {
     let that = this
-    util.GetOrder(api.GetOrder,{
+    util.GetOrder(api.GetBOrder,{
       page,
       userId: 3
     }).then(res=>{
@@ -105,7 +105,7 @@ Page({
         duration:100
       })
     }else{
-      util.requestp(api.CancelOrder,{
+      util.requestp(api.CancelBOrder,{
         userId:3,
         orderId:order.id
       }).then(res=>{
@@ -119,7 +119,6 @@ Page({
       })
     }
   },
-
 
   /**
    * 生命周期函数--监听页面隐藏

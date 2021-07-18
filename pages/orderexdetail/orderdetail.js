@@ -15,28 +15,13 @@ Page({
 
   //取消订单
   cancelOrder: function(option){
-    console.log(option);
-    var order=this.data.orderGoods[option.currentTarget.dataset["index"]]
-    if(this.data.order.orderStatus==103){
-      wx.showToast({
-        title: '该订单已取消',
-        icon:"error",
-        duration:100
-      })
-    }else{
-      util.requestp(api.CancelOrder,{
-        userId:3,
-        orderId:order.id
-      }).then(res=>{
-        wx.showToast({
-          title: '取消成功',
-          icon:"success",
-          duration:100
-        }).then(res=>{
-          this.onLoad();
-        })
-      })
-    }
+    
+    wx.showToast({
+      title: '该订单不可取消',
+      icon:"error",
+      duration:100
+    })
+  
   },
 
   /**
@@ -60,7 +45,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    util.GetOrderDetail(api.GetOrderDetail,{
+    util.GetOrderDetail(api.GetCOrderDetail,{
       orderId:this.data.orderId,
       userId: 3
     }).then(res=>{

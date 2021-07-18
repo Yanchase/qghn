@@ -19,7 +19,8 @@ Page({
     couponId: 0,
     userCouponId: 0,
     message: '',
-    fromCart:true
+    fromCart:true,
+    gkind:0,    //商品类型：目录：1.积分购买，2.积分兑换
     // grouponLinkId: 0, //参与的团购
     // grouponRulesId: 0 //团购规则ID
   },
@@ -32,10 +33,10 @@ Page({
     })
     //获取地址
     this.getAddress();
-    // 页面初始化 options为页面跳转所带来的参数
+    // 页面初始化 options为页面跳转所带来的参数数组
     var temcartId=JSON.parse(options.cartId)
+
     //大于零表示从购物车跳转到此页面
-    
     if(temcartId.length>0){
 
       let cartId = temcartId;
@@ -49,7 +50,8 @@ Page({
       console.log(temcart);
       this.setData({
         checkedCartList:temcart,
-        fromCart:false
+        fromCart:false,
+        gkind:options.gkind
       })
       this.calAllPrice();
     }
@@ -85,10 +87,10 @@ Page({
     this.data.checkedCartList.forEach(function(element, index, array){
 
       console.log(element);
-      if(element.counterPrice==null){
-        goodsTotalPrice=goodsTotalPrice+element.retailPrice*element.number;
+      if(element.counterPrice==undefined || element.counterPrice==0 || element.counterPrice==null){
+        goodsTotalPrice=goodsTotalPrice+(element.retailPrice)*(element.number);
       }else{
-        goodsTotalPrice=goodsTotalPrice+element.counterPrice*element.number;
+        goodsTotalPrice=goodsTotalPrice+(element.counterPrice)*(element.number);
       }
       
       actualPrice=actualPrice+(element.retailPrice)*(element.number)
@@ -181,8 +183,6 @@ Page({
   //提交订单
   submitOrder: function () {
 
-
-
     if (this.data.addressId <= 0) {
       util.showErrorToast('请选择收货地址');
       return false;
@@ -203,6 +203,11 @@ Page({
     //商品详情页
     }else{
       url=api.OrderOneSubmit;
+      if(app.gkind==1){
+        url=api.OrderBSubmit
+      }else if(app.gkind==2){
+        url=api.OrderCSubmit
+      }
       data={
         addressId:app.addressId,
         goodId:app.checkedCartList[0].id,

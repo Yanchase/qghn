@@ -24,6 +24,16 @@ Page({
  
   },
  
+  //取消订单
+  cancelOrder: function(option){
+    
+      wx.showToast({
+        title: '该订单不可取消',
+        icon:"error",
+        duration:100
+      })
+    
+  },
  
   //顶部tab切换
   navbarTap: function(e) {
@@ -38,7 +48,7 @@ Page({
     console.log(option.currentTarget.dataset["index"]);
     const orderId=option.currentTarget.dataset["index"];
     wx.navigateTo({
-      url: '../orderdetail/orderdetail?orderId='+orderId,
+      url: '../orderexdetail/orderdetail?orderId='+orderId,
     })
   },
 
@@ -75,7 +85,7 @@ Page({
 
   getOrders (page) {
     let that = this
-    util.GetOrder(api.GetOrder,{
+    util.GetOrder(api.GetCOrder,{
       page,
       userId: 3
     }).then(res=>{
@@ -93,33 +103,6 @@ Page({
       }
     })
   },
-
-  //取消订单
-  cancelOrder: function(option){
-    console.log(option);
-    var order=this.data.list[option.currentTarget.dataset["index"]]
-    if(order.orderStatus==103){
-      wx.showToast({
-        title: '该订单已取消',
-        icon:"error",
-        duration:100
-      })
-    }else{
-      util.requestp(api.CancelOrder,{
-        userId:3,
-        orderId:order.id
-      }).then(res=>{
-        wx.showToast({
-          title: '取消成功',
-          icon:"success",
-          duration:100
-        }).then(res=>{
-          this.onLoad();
-        })
-      })
-    }
-  },
-
 
   /**
    * 生命周期函数--监听页面隐藏

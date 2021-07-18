@@ -19,12 +19,12 @@
 		</view>
 		<view class="productInfo">
 			<view class="productTitle">{{item.goodsName}}</view>
-			<text class="productPrice">￥{{item.price}}</text>
+			<text class="productPrice">￥{{item.price}}+{{item.integral}}积分</text>
 			<text class="productQuantity">x{{item.number}}</text>
 		</view>
 	</view>
 	<view class="productCount">
-		<view>合计：￥<text>{{item.price*item.number}}</text></view>
+		<view>合计：￥<text>{{item.price*item.number}}+{{item.integral}}积分</text></view>
 	</view>
 </view>	
 

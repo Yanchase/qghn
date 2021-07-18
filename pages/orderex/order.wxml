@@ -35,7 +35,7 @@
                     共{{item.orderGoodsNum}}件商品
                   </label>
                   <lable class='cont_cen_money'>
-                    <text class='cont_ce_mon'>合计:￥{{item.actualPrice}}</text>
+                    <text class='cont_ce_mon'>合计:{{item.integral}}积分</text>
                   </lable>
                 <!-- </view> -->
               </view>

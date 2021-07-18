@@ -45,7 +45,9 @@ Page({
       this.getGoods(e, 1);
       this.setData({
         id: 0
-      });
+      });//积分商品类处理
+    }else if(title =="积分购物" || title =="积分兑换"){
+      this.getIntegralGoods(title,1);
     }
     else {
       var x;
@@ -69,7 +71,11 @@ Page({
     let id = this.data.id
     if (id == "0") {
       this.getGoods(e, page)
-    } else {
+    } else if(id == "1"){
+      this.getIntegralGoods("积分购物",page)
+    }else if(id == "2"){
+      this.getIntegralGoods("积分兑换",page)
+    }else{
       this.getGoodbyCategory(e, id, page)
     }
   },
@@ -82,9 +88,19 @@ Page({
         let r = [{
           "id": 0,
           "name": "全部",
+        },{
+          "id": 1,
+          "name": "积分购物",
+        },{
+          "id": 2,
+          "name": "积分兑换",
         }];
         r = r.concat(res.data)
         console.log(res);
+        wx.setStorage({
+          data: r,
+          key: 'rootCate',
+        })
         that.setData({
           stuff_types: r
         })
@@ -111,6 +127,7 @@ Page({
     let that = this;
     util.request(api.Goodlist+"/"+id+"?page="+page).then(function(res) {
       if (res.msg == "success") {
+        console.log(res.data);
         let stuffs = that.data.stuffs.concat(res.data)
         that.setData({
           stuffs,
@@ -119,4 +136,35 @@ Page({
       }
     });
   },
+
+
+  //获取积分有关的商品
+  getIntegralGoods: function(title,page){
+    let url='',id=0;
+    if(title=="积分购物"){
+      url=api.intBGoodlist,
+      id=1
+    }else{
+      url=api.intCGoodlist,
+      id=2
+    }
+
+    this.setData({
+      id:id,
+    })
+
+    util.request(url+"?page="+page).then(res=> {
+      if (res.msg == "success") {
+        console.log(res.data);
+        let stuffs = this.data.stuffs.concat(res.data)
+        this.setData({
+          stuffs,
+          isEmpty: (stuffs.length == 0)
+        })
+      }
+    });
+
+
+  },
+
 })

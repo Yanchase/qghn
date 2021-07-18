@@ -32,6 +32,7 @@ background-color:rgb(211,211,211) ;
 
 .stuff_d {
   width: 100%;
+  margin-top: 10rpx;
   display: flex;
   height: 60rpx;
 }

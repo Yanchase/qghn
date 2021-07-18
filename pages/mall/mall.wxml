@@ -16,14 +16,16 @@
   <scroll-view style="height:{{scroll_height}}rpx" scroll-y="true" bindscrolltolower="scrolltoLower">
     <van-grid wx:if="{{!isEmpty}}" column-num="2" clickable="true" center="{{false}}">
       <van-grid-item use-slot wx:for="{{stuffs}}" wx:key="key" link-type="navigateTo"
-        url="/pages/goods/goods?id={{item.id}}">
+        url="/pages/goods/goods?id={{item.id}}&gkind={{id}}">
         <view class="stuff_item">
           <image src="{{item.pic}}" mode="aspectFit" style="height:300rpx;width: 100%"></image>
           <view class="stuff_d">
             <text class="stuff_name">{{item.name}}</text>
           </view>
           <view class="stuff_p_s">
-            <text class="price">￥{{item.retailPrice}}</text>
+            <text class="price" wx:if="{{id!=1 && id!=2}}">￥{{item.retailPrice}}</text>
+            <text class="price" wx:if="{{id==1}}">￥{{item.retailPrice}}+积分:{{item.integral}}</text>
+            <text class="price" wx:if="{{id==2}}">积分:{{item.integral}}</text>
             <!--<text class="sale">{{item.sale}}件已售</text>-->
           </view>
         </view>     

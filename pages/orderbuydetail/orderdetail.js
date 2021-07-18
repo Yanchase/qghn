@@ -24,7 +24,7 @@ Page({
         duration:100
       })
     }else{
-      util.requestp(api.CancelOrder,{
+      util.requestp(api.CancelBOrder,{
         userId:3,
         orderId:order.id
       }).then(res=>{
@@ -48,7 +48,7 @@ Page({
       userInfo:getApp().globalData.userInfo
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -60,7 +60,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    util.GetOrderDetail(api.GetOrderDetail,{
+    util.request(api.GetBOrderDetail,{
       orderId:this.data.orderId,
       userId: 3
     }).then(res=>{

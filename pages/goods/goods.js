@@ -11,6 +11,7 @@ Page({
     id: 0,
     goods_id: 0,
     goods: {},
+    gkind:0,    //商品类型：目录：1.积分购买，2.积分兑换
     speclist: [],
     numlist: [],
     valuelist: [],
@@ -26,16 +27,22 @@ Page({
     openAttr: false,
     openShare: false,
     soldout: false,
+    integral:false,  //是否是积分商品
   },
 
    // 获取商品信息
-   getGoodsInfo: function() {
-    let that = this;
+   getGoodsInfo: function(gkind,id) {
+    let that = this,url="";
+    if(gkind==1){
+      url=api.intBGoodInfo
+    }else if(gkind==2){
+      url=api.intCGoodInfo
+    }else{
+      url=api.GoodInfo
+    }
 
-    util.request(api.GoodInfo, {
-      id: parseInt(that.data.id)
-
-
+    util.request(url, {
+      id: id
     }).then(function(res) {
       if (res.code == 0) {
         that.setData({
@@ -50,10 +57,10 @@ Page({
   },
 
   //获取商品规格
-  getGoodsSpec: function(){
+  getGoodsSpec: function(gkind,id){
     let that = this;
     util.request(api.GoodSpec, {
-      goods_id: parseInt(that.data.id)
+      goods_id: id
     }).then(function(res) {
       if(res.code == 0)
       {
@@ -107,16 +114,23 @@ Page({
         console.log(this.data)
       },
 
-  //基础信息和规格
+  //基础信息和规格,积分类商品也会通过该页面显示
   onLoad: function(options) {
     if (options.id) {
       this.setData({
-        id: parseInt(options.id)
+        id: parseInt(options.id),
+        gkind: parseInt(options.gkind)
       });
-      this.getGoodsInfo();
-      this.getGoodsSpec(options.id);
+      //判断商品是否是积分商品
+      if(options.gkind!=0){
+        this.setData({
+          integral:true
+        })
+      }
+      //根据商品类别获取商品信息
+      this.getGoodsInfo(options.gkind,options.id);
+      this.getGoodsSpec(options.gkind,options.id);
     }
-    console.log(this.data)
   },
 
   //下栏购物车数量显示
@@ -164,7 +178,7 @@ Page({
       try {
         wx.setStorageSync('cart', cart);
         wx.navigateTo({
-          url: '/pages/paythebill/paythebill?cartId='+JSON.stringify([])
+          url: '/pages/paythebill/paythebill?cartId='+JSON.stringify([])+"&gkind="+this.data.gkind
         })
       } catch (e) {}
 
@@ -249,10 +263,20 @@ Page({
   
   //跳转到购物车
   openCartPage: function() {
-    wx.switchTab({
-      url: '/pages/cart/cart'
-    });
+    if(this.data.integral=true){
+      wx.showToast({
+        title: '该商品不能加入购物车',
+        icon:"none",
+        duration:1000
+      })
+    }else{
+      wx.switchTab({
+        url: '/pages/cart/cart'
+      });
+    }
+    
   },
+
   onReady: function() {
     // 页面渲染完成
 

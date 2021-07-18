@@ -325,8 +325,11 @@
   flex: 1;
   text-align: center;
   color: #fff;
+  border-radius: 0;
 }
+
 @import "../../lib/wxParse/wxParse.wxss";
+
 .bottom-btn .n {
   float: left;
   background: #d5d8d8e7;
@@ -370,7 +373,7 @@
 .attr-pop .close .icon {
   width: 48rpx;
   height: 48rpx;
-  
+
 }
 
 .attr-pop .img-info {

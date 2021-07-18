@@ -27,7 +27,7 @@
       icon="/image/grid/dingdan.png"
       link-type="navigateTo"
       url="/pages/order/order"
-      text="订单"
+      text="普通订单"
       />
       <van-grid-item
       icon="/image/mine/address.png"
@@ -36,16 +36,16 @@
       text="收货地址"
       />
       <van-grid-item
-      icon="/image/grid/youhuiquan.png"
+      icon="/image/mine/inbuy.png"
       link-type="reLaunch"
-      url=""
-      text="优惠券"
+      url="/pages/orderbuy/order"
+      text="积分购订单"
       />
       <van-grid-item
-      icon="/image/grid/quanbudingdan.png"
+      icon="/image/mine/inexchange.png"
       link-type="reLaunch"
-      url=""
-      text="全部订单"
+      url="/pages/orderex/order"
+      text="积分兑订单"
       />
       </van-grid>
       </view>
