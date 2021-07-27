@@ -7,6 +7,7 @@ Page({
     userInfo: {},
     hasUserInfo: true,
     canIUseGetUserProfile: false,
+    points: 231
   },
 
   onLoad() {    

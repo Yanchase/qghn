@@ -19,7 +19,8 @@
     "pages/rvideos/rvideos",
     "pages/address/address",
     "pages/addressedit/addressedit",
-    "pages/addressadd/addressadd"
+    "pages/addressadd/addressadd",
+    "pages/partner/partner"
   ],
   "window": {
     "backgroundTextStyle": "light",

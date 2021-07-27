@@ -80,3 +80,14 @@ page {
 .user_content .user_main .my_service .order_content navigator .order_name {
   font-size: small;
 }
+.points {
+  height: 50rpx;
+  align-content: center;
+  background-color: #fff;
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  margin-top: 20rpx;
+}
+.points .p1 {
+  font-size: small;
+}

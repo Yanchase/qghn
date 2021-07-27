@@ -41,7 +41,7 @@
 
 <view>
 <van-grid column-num="2" border="{{ false }}">
-  <van-grid-item use-slot wx:for="{{picList}}" wx:key="banner_id" link-type="navigateTo" url="/pages/mine/mine">
+  <van-grid-item use-slot wx:for="{{picList}}" wx:key="banner_id" link-type="navigateTo" url="/pages/partner/partner">
     <image
       style="width: 350rpx; height: 211rpx; display: block; box-sizing: border-box; left: NaNrpx; top: NaNrpx"
       src="{{item}}"

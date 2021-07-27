@@ -49,4 +49,6 @@
   UpdateAddress:WxApiRoot+'qghn/user/address/updateAdress',
   GetOneAddress:WxApiRoot+'qghn/user/address/getOneAdress',
   DeleteAddress:WxApiRoot+'qghn/user/address/delete',
+
+  AddPartner:WxApiRoot+'/qghn/partner-info/add'     //添加合伙人
  };

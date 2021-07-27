@@ -1,0 +1,29 @@
+<view>
+<view class="form">
+  <van-cell-group>
+  <van-field
+    model:value="{{ name }}"
+    placeholder="请输入用户名"
+    border="{{ true }}"
+    label="入驻名称"
+    :input="partnerInfo.name=$event.mp.detail"/>
+  <van-field
+    model:value="{{ phone }}"
+    placeholder="请确保填写内容能够正确联系"
+    border="{{ true }}"
+    label="联系方式"
+    :input="partnerInfo.phone=$event.mp.detail"
+    />
+  <van-field
+    model:value="{{ moreInfo }}"
+    placeholder="请输入补充信息"
+    border="{{ true }}"
+    label="其他信息"
+    :input="partnerInfo.moreInfo=$event.mp.detail"
+  />
+</van-cell-group>
+</view>
+<view class="btn">
+  <van-button type="default" bindtap="AddPartner">提交</van-button>
+</view>
+</view>

@@ -50,7 +50,10 @@
       </van-grid>
       </view>
     </view> 
-
+    <!--积分-->
+    <view class="points">
+       <view class="p1">积分：{{points}}</view>
+    </view>
   <!--会员专区-->
     <view class="vip">
     <navigator url="">
